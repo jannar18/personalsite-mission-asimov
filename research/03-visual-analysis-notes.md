@@ -265,7 +265,114 @@ This board isn't about "pretty buildings." It's about **how to represent the rel
 
 ---
 
-## Pending Sources
+## Source 4: Asimov Collective Project Sites (Experience & Structure Analysis)
 
-- [ ] Asimov Collective reference sites
-- [ ] Porter Robinson / Active Theory reference sites
+> **Note:** These references are about experience, UX structure, storytelling, branding, and what makes them feel premium — NOT color. Color palette is already established from Julianna's own work.
+
+Sites analyzed: Shinkei Systems, Monumental Labs, Extropic. (Valar Atomics pending.)
+
+### The Asimov Collective Formula
+
+Every project page follows the same structural DNA with remarkable consistency:
+
+**1. Navigation = Confidence**
+- Fixed header with just two links: "Library" and "Projects"
+- Breadcrumb ("Back to home") for escape
+- Sequential project navigation (prev/next) — portfolio is a browsable collection, not isolated pages
+- Minimal navigation = "we trust our content to hold you"
+
+**2. Content Pacing = Slow Reveal**
+- Hero → title + description → service tags → image galleries → CTA → next project
+- Progressive disclosure — metadata first, then rich media builds narrative momentum
+- Multiple image galleries in three formats: **wide (landscape), square, tall (portrait)**
+- Galleries break up text sections — the rhythm is: read → look → read → look
+
+**3. Imagery = Full Immersion**
+- High-resolution assets (4000px wide), WebP with blur placeholders for progressive loading
+- Three responsive image formats serve different aspect ratios per device
+- Embedded interactive "playgrounds" (asimov-playground.vercel.app) — dynamic, explorable content beyond static images
+- Video autoplay where appropriate
+- Images DOMINATE — text is brief, imagery does the storytelling
+
+**4. Typography = Invisible System**
+- Custom fonts (7 distinct font files loaded per page) — not system fonts, not Google Fonts
+- Sans-serif dominant, clean and contemporary
+- Strong hierarchy: large headlines for impact, smaller body copy
+- Generous line-height — text breathes
+
+**5. Copy = Precise and Confident**
+- Brief, substantive, no hyperbole
+- "Artisanal quality at industrial scale" (Shinkei) — concise positioning
+- "Bridges workshop traditions of fine arts with cutting-edge technology" (Monumental) — craft meets innovation
+- Tags define scope: "Brand Design, Strategy, Web Design + Development, Copywriting, Product Design, Identity Design"
+- The copy SERVES the imagery, not the other way around
+
+**6. Interaction = Subtle Physics**
+- Lenis scroll library with lerp: 0.8 — smooth, physics-based scrolling
+- No jarring animations — everything eases
+- ResizeObserver for responsive behavior
+- Scroll-linked reveals (progressive disclosure as you scroll)
+- The interaction is FELT, not seen
+
+**7. Whitespace = Confidence**
+- Generous vertical rhythm between sections
+- Fixed nav doesn't intrude
+- Image galleries have breathing room
+- Absence of clutter communicates: "we don't need to fill space to justify our presence"
+
+**8. Premium Quality Signals**
+- Custom font infrastructure
+- Sophisticated image optimization (blur placeholders, responsive formats)
+- Smooth scroll physics
+- Embedded interactive playgrounds (not just screenshots — live explorable content)
+- Detailed view tracking / analytics
+- Clean, purposeful navigation — nothing extraneous
+
+### What to Take from Asimov for Mission Asimov
+
+| Asimov Pattern | How It Translates |
+|----------------|-------------------|
+| Single-column vertical scroll | Primary site structure — one column, intentional pacing |
+| Three image formats (wide/square/tall) | Portfolio pages use mixed aspect ratios, not uniform grids |
+| Progressive disclosure | Content reveals as you scroll — don't show everything at once |
+| Sequential project navigation | Architecture portfolio as a browsable sequence, not a grid |
+| Embedded interactive playgrounds | Room for interactive experiments within project pages |
+| Smooth scroll physics (Lenis, lerp) | The site should FEEL physical — eased, weighted movement |
+| Copy serves imagery | Brief, precise text. Let the work speak. |
+| Custom typography system | Invest in typeface selection early — this is non-negotiable for the quality bar |
+
+---
+
+## Source 5: Porter Robinson / Nurture
+
+### porterrobinson.com
+
+The landing is intentionally **minimal and mysterious** — pink background with "Porter Robinson SMILE! :D." The real experience loads asynchronously via JavaScript (WebGL/Three.js world). The site IS a narrative device, not a container.
+
+Key qualities:
+- **Anticipation through absence** — nothing is immediately visible, the experience unfolds
+- **The site as a space you enter** — not a page you read (confirmed from earlier research)
+- **Performative identity** — "SMILE! :D" is an instruction, not an invitation
+- Custom fonts (NBArchitekt, PPPangramsans) for artistic control
+- Sophisticated tracking underneath a deliberately opaque navigation
+
+### nurture.art
+
+(Fetch partially completed — to be revisited)
+
+### What to Take from Porter Robinson
+
+| Porter Pattern | How It Translates |
+|----------------|-------------------|
+| Site as portal/space | Future interactive layer — the "play" in "play within polish" |
+| Anticipation and unfolding | Even in Asimov-first V1, the site could have a moment of arrival |
+| Custom WebGL world | Banked for Phase 2+ — architecture the codebase so this can be added later |
+| Performative identity | The site's personality should be felt, not just displayed |
+
+---
+
+## Pending
+
+- [ ] Valar Atomics (Asimov Collective) — fetch was interrupted
+- [ ] nurture.art — fetch partially completed
+- [ ] Deeper analysis of Asimov Collective's homepage and overall portfolio structure
