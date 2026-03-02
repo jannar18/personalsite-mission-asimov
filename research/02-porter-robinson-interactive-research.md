@@ -128,6 +128,55 @@ The Nurture production shows how the same aesthetic (digital/organic blend, emot
 
 ---
 
+## "Look at the Sky" — WebXR Multiplayer Listening Experience
+
+**Case Study:** https://activetheory.medium.com/look-at-the-sky-b03ac8d48252
+**Built by:** Active Theory
+
+### What It Was
+An interactive, multiplayer listening experience for the "Look at the Sky" single launch. Users are placed into an environment that evolves as the track plays, listening together with others from around the world.
+
+### How It Worked
+- **Waiting rooms** fill with up to 100 users over 45 seconds
+- Users placed in a **spiral formation** as they join — ensures everyone feels surrounded by other listeners
+- **Gaze-based mechanic** linked to the device gyroscope — move your phone "magic window" style to look around
+- The **laser pointer from your gaze doubles as an art tool** — light trails form as you look around
+- Mobile-only or WebVR — designed for the device in your hand
+- 360-degree environment that evolves in sync with the music
+- Everyone's audiovisual experience synced regardless of global location
+
+### Visual Direction
+- Stayed in the Nurture universe: natural scenery contrasted with stark black palette
+- **Line scribbles as individual expression** — each user's gaze trail becomes a drawing in the shared space
+
+### Why It Matters
+This is the most intimate-scale version of Active Theory's work. Not a festival, not a game — a shared moment. The gaze-as-art-tool concept is particularly relevant: **the user's attention literally becomes a creative act**. That idea — interaction as expression, not just navigation — is powerful for Julianna's site.
+
+---
+
+## Michael Kim — Active Theory Developer (Porter Robinson Projects)
+
+**URL:** https://maikool.com/project/porter-robinson
+**Role:** 3D, Modeling, R&D, Lookdev, WebGL Shaders, VR/AR Prototyping
+
+### Projects
+- Nurture album website (virtual space)
+- "Look at the Sky" mobile AR experience
+- Secret Sky / Dreamwave festival platform
+- "Mirror" music video
+
+### Technical Skills Demonstrated
+- WebGL shader development
+- 3D modeling and visualization
+- **Photogrammetry** (Meshroom, terrain mesh generation)
+- VR/AR prototyping
+- Terrain and environment generation
+
+### Why It Matters
+Kim's role shows the cross-disciplinary skill set needed: 3D modeling, shader code, AR prototyping, photogrammetry. This is the kind of hybrid creative-technical work that maps onto Julianna's architecture-software bridge.
+
+---
+
 ## Jack Entee — Porter Robinson Portfolio Piece
 
 **URL:** https://jackentee.com/porter-robinson/
