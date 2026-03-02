@@ -186,7 +186,7 @@ Kim's role shows the cross-disciplinary skill set needed: 3D modeling, shader co
 
 ## Key Studio: Active Theory
 
-Active Theory is the recurring name across Porter Robinson's web work. They are the team that turns these visions into browser-based realities. Venice Beach-based, founded in 2012, on Fast Company's 2022 Most Innovative Companies list.
+Active Theory is the recurring name across Porter Robinson's web work. They are the team that turns these visions into browser-based realities. Founded in 2012, on Fast Company's 2022 Most Innovative Companies list. **Three offices: LAX (Venice Beach), NYC, and AMS (Amsterdam).** Remote-friendly, globally distributed team.
 
 **URL:** https://activetheory.net/
 
