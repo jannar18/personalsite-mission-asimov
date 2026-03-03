@@ -1,0 +1,1 @@
+Retroactive close: all Phase 1b deliverables shipped and merged (PR #5). research/03-graphics-pipeline-final.md is comprehensive (66KB) covering design DNA, computational tools, AI platforms, and recommended hybrid pipeline. asset-workflows/ contains 6 runnable scripts and prompt templates. Already referenced as primary visual/graphics decision guide in CLAUDE.md.
