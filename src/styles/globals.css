@@ -68,6 +68,16 @@
   }
 }
 
+/* ── Section Background Treatments ──
+   Background alternation system for editorial pacing.
+   Applied via PageSection component background prop. */
+@layer components {
+  /* Smooth transition between background sections */
+  .section-transition {
+    transition: background-color 0.3s ease;
+  }
+}
+
 /* ── Grain Overlay ──
    Subtle paper texture using SVG feTurbulence filter.
    Applied as a pseudo-element on a wrapper to avoid affecting layout.

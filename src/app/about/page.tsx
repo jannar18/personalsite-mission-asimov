@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "About",
@@ -10,16 +13,16 @@ export const metadata: Metadata = {
  */
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-content px-5">
-      <section className="py-24">
-        <h1 className="text-4xl font-light text-ink md:text-5xl">About</h1>
-        <div className="mt-12 max-w-text">
-          <p className="text-lg text-ink-light leading-relaxed">
+    <PageSection>
+      <ContentContainer>
+        <PageHeader title="About" />
+        <div className="max-w-text">
+          <p className="text-lg leading-relaxed text-ink-light">
             This page will hold a personal introduction — bridging architecture
             practice and software/AI practice into a unified identity.
           </p>
         </div>
-      </section>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

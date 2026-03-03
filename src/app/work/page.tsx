@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -14,10 +17,10 @@ export const metadata: Metadata = {
  */
 export default function WorkPage() {
   return (
-    <div className="mx-auto max-w-content px-5">
-      <section className="py-24">
-        <h1 className="text-4xl font-light text-ink md:text-5xl">Work</h1>
-        <div className="mt-12 flex flex-col gap-8 sm:flex-row sm:gap-16">
+    <PageSection>
+      <ContentContainer>
+        <PageHeader title="Work" />
+        <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
           <Link
             href="/work/architecture"
             className="group"
@@ -41,7 +44,7 @@ export default function WorkPage() {
             </p>
           </Link>
         </div>
-      </section>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

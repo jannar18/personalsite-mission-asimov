@@ -5,50 +5,37 @@ import Link from "next/link";
  *
  * Restrained, typographic. Matches Asimov pattern:
  * quiet, generous whitespace, no visual clutter.
+ * Uppercase nav labels with wide tracking to match header treatment.
  */
+
+const footerLinks = [
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/writing", label: "Writing" },
+  { href: "/now", label: "Now" },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border mt-24 pt-12 pb-16">
+    <footer className="mt-24 border-t border-border pt-12 pb-16">
       <div className="mx-auto max-w-content px-5 font-sans">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <p
-            className="text-sm text-ink-lighter"
-            style={{ letterSpacing: "var(--tracking-wide)" }}
-          >
+          <p className="text-xs uppercase tracking-wider text-ink-lighter">
             &copy; {currentYear} Parallax
           </p>
 
-          <nav className="flex gap-6">
-            <Link
-              href="/about"
-              className="text-sm text-ink-lighter transition-colors hover:text-ink"
-              style={{ letterSpacing: "var(--tracking-wide)" }}
-            >
-              About
-            </Link>
-            <Link
-              href="/work"
-              className="text-sm text-ink-lighter transition-colors hover:text-ink"
-              style={{ letterSpacing: "var(--tracking-wide)" }}
-            >
-              Work
-            </Link>
-            <Link
-              href="/writing"
-              className="text-sm text-ink-lighter transition-colors hover:text-ink"
-              style={{ letterSpacing: "var(--tracking-wide)" }}
-            >
-              Writing
-            </Link>
-            <Link
-              href="/now"
-              className="text-sm text-ink-lighter transition-colors hover:text-ink"
-              style={{ letterSpacing: "var(--tracking-wide)" }}
-            >
-              Now
-            </Link>
+          <nav className="flex gap-8">
+            {footerLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-xs uppercase tracking-wider text-ink-lighter transition-colors hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
       </div>

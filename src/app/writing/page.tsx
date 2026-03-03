@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllWritingPosts } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -17,10 +20,10 @@ export default function WritingPage() {
   const posts = getAllWritingPosts();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <section className="py-24">
-        <h1 className="text-4xl font-light text-ink md:text-5xl">Writing</h1>
-        <div className="mt-16 flex flex-col gap-12">
+    <PageSection>
+      <ContentContainer>
+        <PageHeader title="Writing" />
+        <div className="flex flex-col gap-12">
           {posts.length === 0 ? (
             <p className="text-ink-light">Essays coming soon.</p>
           ) : (
@@ -38,12 +41,14 @@ export default function WritingPage() {
                     {post.description}
                   </p>
                 )}
-                <p className="mt-1 text-sm text-ink-lighter">{post.date}</p>
+                <p className="mt-1 font-mono text-xs tracking-wider text-ink-lighter">
+                  {post.date}
+                </p>
               </Link>
             ))
           )}
         </div>
-      </section>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

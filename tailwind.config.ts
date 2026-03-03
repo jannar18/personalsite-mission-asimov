@@ -83,6 +83,106 @@ const config: Config = {
         content: "72rem",
         text: "40rem",
       },
+      /* ── @tailwindcss/typography — Brand customization ──
+       * Serif body, sans headings, mono code, terracotta links.
+       * Matches brand-guide §4 and tokens.css color system.
+       */
+      typography: {
+        DEFAULT: {
+          css: {
+            /* Body text: serif, ink color, relaxed reading */
+            fontFamily: "var(--font-serif), Cormorant Garamond, Georgia, serif",
+            color: "#2C2824", /* ink */
+            lineHeight: "1.75",
+            /* Headings: sans, medium weight, tight tracking */
+            "h1, h2, h3, h4, h5, h6": {
+              fontFamily: "var(--font-sans), Futura PT, Jost, system-ui, sans-serif",
+              fontWeight: "500",
+              letterSpacing: "-0.02em",
+              color: "#2C2824", /* ink */
+            },
+            h1: { fontSize: "1.875rem", lineHeight: "1.2" },
+            h2: { fontSize: "1.5rem", lineHeight: "1.35" },
+            h3: { fontSize: "1.25rem", lineHeight: "1.35" },
+            h4: { fontSize: "1.125rem", lineHeight: "1.35" },
+            /* Links: terracotta accent, no underline, hover to coral */
+            a: {
+              color: "#C4724E", /* terracotta */
+              textDecoration: "none",
+              fontWeight: "inherit",
+              transition: "color 0.2s ease",
+              "&:hover": {
+                color: "#C95D45", /* coral */
+              },
+            },
+            /* Strong: medium weight, not bold */
+            strong: {
+              fontWeight: "500",
+              color: "#2C2824", /* ink */
+            },
+            /* Blockquotes: left border terracotta, italic serif */
+            blockquote: {
+              fontStyle: "italic",
+              borderLeftColor: "#C4724E", /* terracotta */
+              borderLeftWidth: "2px",
+              color: "#5C554E", /* ink-light */
+              paddingLeft: "1.5rem",
+            },
+            /* Code: mono font, slate background */
+            code: {
+              fontFamily: "var(--font-mono), Degular Mono, DM Mono, monospace",
+              color: "#2C2824", /* ink */
+              backgroundColor: "#FAF8F5", /* surface */
+              borderRadius: "0.25rem",
+              padding: "0.125rem 0.375rem",
+              fontSize: "0.875em",
+              fontWeight: "400",
+            },
+            "code::before": { content: '""' },
+            "code::after": { content: '""' },
+            /* Pre blocks: surface background */
+            pre: {
+              backgroundColor: "#FAF8F5", /* surface */
+              color: "#2C2824", /* ink */
+              borderRadius: "0.375rem",
+              border: "1px solid #E2DCD5", /* border color */
+            },
+            "pre code": {
+              backgroundColor: "transparent",
+              padding: "0",
+              borderRadius: "0",
+            },
+            /* Horizontal rules: border color */
+            hr: {
+              borderColor: "#E2DCD5", /* border */
+            },
+            /* Lists: ink-light bullets */
+            "ul > li::marker": {
+              color: "#B5AFA6", /* warm-gray */
+            },
+            "ol > li::marker": {
+              color: "#B5AFA6", /* warm-gray */
+            },
+            /* Figures and captions */
+            figcaption: {
+              fontFamily: "var(--font-sans), Futura PT, Jost, system-ui, sans-serif",
+              fontSize: "0.875rem",
+              color: "#8A847D", /* ink-lighter */
+              letterSpacing: "0.05em",
+            },
+            /* Table styling */
+            "thead th": {
+              fontFamily: "var(--font-sans), Futura PT, Jost, system-ui, sans-serif",
+              fontWeight: "500",
+              borderBottomColor: "#E2DCD5", /* border */
+              color: "#2C2824", /* ink */
+            },
+            "tbody td": {
+              borderBottomColor: "#E2DCD5", /* border */
+            },
+          },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],

@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllWritingPosts, getWritingPost } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 /**
  * Writing detail page — renders a single essay/post from MDX.
@@ -35,23 +38,21 @@ export default async function WritingDetailPage({
   if (!post) notFound();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <article className="py-24">
-        <header className="mb-16">
-          <h1 className="text-4xl font-light text-ink md:text-5xl">
-            {post.title}
-          </h1>
-          {post.description && (
-            <p className="mt-4 max-w-text text-lg text-ink-light">
-              {post.description}
-            </p>
-          )}
-          <p className="mt-4 text-sm text-ink-lighter">{post.date}</p>
-        </header>
+    <PageSection>
+      <ContentContainer as="article">
+        <PageHeader
+          title={post.title}
+          subtitle={post.description}
+          metadata={
+            <time className="font-mono text-xs uppercase tracking-wider">
+              {post.date}
+            </time>
+          }
+        />
         <div className="prose max-w-text">
           <MDXRemote source={post.content} />
         </div>
-      </article>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

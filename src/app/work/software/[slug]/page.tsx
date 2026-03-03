@@ -4,6 +4,9 @@ import {
   getAllSoftwareProjects,
   getSoftwareProject,
 } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 /**
  * Software project detail page.
@@ -40,27 +43,23 @@ export default async function SoftwareProjectPage({
   if (!project) notFound();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <article className="py-24">
-        <header className="mb-16">
-          <h1 className="text-4xl font-light text-ink md:text-5xl">
-            {project.title}
-          </h1>
-          {project.description && (
-            <p className="mt-4 max-w-text text-lg text-ink-light">
-              {project.description}
-            </p>
-          )}
-          {project.stack && (
-            <p className="mt-4 text-sm text-ink-lighter">
-              {project.stack.join(" · ")}
-            </p>
-          )}
-        </header>
+    <PageSection>
+      <ContentContainer as="article">
+        <PageHeader
+          title={project.title}
+          subtitle={project.description}
+          metadata={
+            project.stack && (
+              <span className="font-mono text-xs uppercase tracking-wider">
+                {project.stack.join(" · ")}
+              </span>
+            )
+          }
+        />
         <div className="prose max-w-text">
           <MDXRemote source={project.content} />
         </div>
-      </article>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllSoftwareProjects } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Software",
@@ -16,12 +19,10 @@ export default function SoftwarePage() {
   const projects = getAllSoftwareProjects();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <section className="py-24">
-        <h1 className="text-4xl font-light text-ink md:text-5xl">
-          Software
-        </h1>
-        <div className="mt-16 flex flex-col gap-16">
+    <PageSection>
+      <ContentContainer>
+        <PageHeader title="Software" />
+        <div className="flex flex-col gap-16">
           {projects.length === 0 ? (
             <p className="text-ink-light">Projects coming soon.</p>
           ) : (
@@ -40,7 +41,7 @@ export default function SoftwarePage() {
                   </p>
                 )}
                 {project.stack && (
-                  <p className="mt-1 text-sm text-ink-lighter">
+                  <p className="mt-1 font-mono text-xs tracking-wider text-ink-lighter">
                     {project.stack.join(" · ")}
                   </p>
                 )}
@@ -48,7 +49,7 @@ export default function SoftwarePage() {
             ))
           )}
         </div>
-      </section>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllNowEntries } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 export const metadata: Metadata = {
   title: "Now",
@@ -19,16 +22,16 @@ export default function NowPage() {
   const entries = getAllNowEntries();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <section className="py-24">
-        <h1 className="text-4xl font-light text-ink md:text-5xl">Now</h1>
+    <PageSection>
+      <ContentContainer>
+        <PageHeader title="Now" />
         <div className="mt-16 flex flex-col gap-20">
           {entries.length === 0 ? (
             <p className="text-ink-light">Nothing here yet.</p>
           ) : (
             entries.map((entry) => (
               <article key={entry.slug} className="max-w-text">
-                <time className="text-sm text-ink-lighter tracking-wide">
+                <time className="font-mono text-xs uppercase tracking-wider text-ink-lighter">
                   {entry.date}
                 </time>
                 <div className="prose mt-4">
@@ -38,7 +41,7 @@ export default function NowPage() {
             ))
           )}
         </div>
-      </section>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }

@@ -4,6 +4,9 @@ import {
   getAllArchitectureProjects,
   getArchitectureProject,
 } from "@/lib/content";
+import ContentContainer from "@/components/ui/ContentContainer";
+import PageSection from "@/components/ui/PageSection";
+import PageHeader from "@/components/ui/PageHeader";
 
 /**
  * Architecture project detail page.
@@ -42,26 +45,22 @@ export default async function ArchitectureProjectPage({
   if (!project) notFound();
 
   return (
-    <div className="mx-auto max-w-content px-5">
-      <article className="py-24">
-        <header className="mb-16">
-          <h1 className="text-4xl font-light text-ink md:text-5xl">
-            {project.title}
-          </h1>
-          {project.description && (
-            <p className="mt-4 max-w-text text-lg text-ink-light">
-              {project.description}
-            </p>
-          )}
-          <div className="mt-4 flex gap-4 text-sm text-ink-lighter">
-            {project.location && <span>{project.location}</span>}
-            {project.typology && <span>{project.typology}</span>}
-          </div>
-        </header>
+    <PageSection>
+      <ContentContainer as="article">
+        <PageHeader
+          title={project.title}
+          subtitle={project.description}
+          metadata={
+            <span className="flex gap-4 font-mono text-xs uppercase tracking-wider">
+              {project.location && <span>{project.location}</span>}
+              {project.typology && <span>{project.typology}</span>}
+            </span>
+          }
+        />
         <div className="prose max-w-text">
           <MDXRemote source={project.content} />
         </div>
-      </article>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 }
