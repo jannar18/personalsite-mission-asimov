@@ -17,11 +17,24 @@ Code will emerge in Phase 3 (Design & Build) after research, branding, and tech 
 .
 ├── CLAUDE.md              # This file — project context for agents
 ├── PRD.md                 # Product requirements document
-├── research/              # Research deliverables
-│   └── 02-porter-robinson-interactive-research.md
+├── research/
+│   ├── 01-asimov-collective-analysis.md        # Phase 0 — Asimov Collective reverse-engineering
+│   ├── 02-porter-robinson-interactive-research.md  # Phase 1a — banked for future interactive phases
+│   ├── 03-graphics-pipeline-final.md           # Phase 1b — ★ THE KEY REFERENCE for visual/graphics decisions
+│   ├── 03-computational-graphics-pipeline.md   # Source: computational tools research
+│   ├── 03-platform-research-notes.md           # Source: AI platform comparison notes
+│   ├── 03-visual-analysis-notes.md             # Source: Julianna's design DNA analysis
+│   ├── 03-gemini-imagen-research.md            # Source: Gemini/Imagen deep dive
+│   └── asset-workflows/                        # Runnable scripts & prompt templates
+│       ├── README.md
+│       ├── canvas-paper-texture.mjs            # Node.js paper texture generator
+│       ├── svg-stipple-field.mjs               # SVG stipple dot field generator
+│       ├── css-grain-overlay.html              # CSS grain technique demo
+│       ├── midjourney-prompts.md               # 8 prompt templates + --sref strategy
+│       └── gpt-image-prompts.md                # 8 API prompt templates + code
 └── .lattice/              # Task tracking (Lattice)
-    ├── config.json        # Project: ASMV, classic workflow
-    ├── context.md         # Lattice instance purpose
+    ├── config.json
+    ├── context.md
     └── tasks/             # 9 tasks (ASMV-1 through ASMV-9)
 ```
 
@@ -51,7 +64,11 @@ Code will emerge in Phase 3 (Design & Build) after research, branding, and tech 
 |-------|-------------|--------|
 | 0 | `research/01-asimov-collective-analysis.md` | Complete |
 | 1a | `research/02-porter-robinson-interactive-research.md` | Complete (banked for future — V1 is Asimov-first) |
-| 1b | `research/03-computational-graphics-pipeline.md` | In progress |
+| 1b | **`research/03-graphics-pipeline-final.md`** | Complete |
+
+**`03-graphics-pipeline-final.md` is the primary reference for all visual and graphics decisions.** It consolidates design DNA (Julianna's color palette, texture vocabulary, typography), computational tools (SVG, shaders, Canvas, CSS), AI platforms (GPT Image, Midjourney, Gemini), and the recommended hybrid pipeline. Key insight: **transparency support is a first-class requirement** for the collage/layering design language — GPT Image API and generative code (SVG/Canvas) are the two paths that support it; Midjourney and Gemini do not.
+
+The `research/asset-workflows/` directory contains runnable starter scripts and prompt templates for testing each pipeline.
 
 ## Essential Commands
 
