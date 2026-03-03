@@ -824,32 +824,22 @@ Two surfaces: **Gemini API** (Nano Banana — `generateContent` via SDK or REST,
 
 ## 5. Recommended Pipeline — The Synthesis
 
-### The Layered Approach
+### The Stack
 
-The site's visual system has four layers, from lightest to heaviest. Each layer builds on the previous. Start with CSS, add complexity only where it earns its weight.
+Four layers from lightest to heaviest, plus supporting tools. Start with CSS, add complexity only where it earns its weight.
 
-| Layer | Tool | Purpose | Performance Cost |
-|-------|------|---------|-----------------|
-| **1. CSS baseline** | Layered gradients, `feTurbulence` grain, blend modes | Page ambiance, subtle texture | 0kb additional |
-| **2. SVG generation** | Paper.js (organic), SVG.js (simple patterns) | Decorative elements, borders, section ornaments | 1-5kb each after SVGO |
+| Layer | Tool | Purpose | Cost |
+|-------|------|---------|------|
+| **1. CSS baseline** | Layered gradients, `feTurbulence` grain, blend modes | Page ambiance, subtle texture | 0kb |
+| **2. SVG generation** | Paper.js (organic), `d3-delaunay` (geometric), `svg-catmull-rom-spline` (flourishes) | Decorative elements, borders, ornaments, Art Deco tessellation | 1-5kb each after SVGO |
 | **3. Build-time raster** | `simplex-noise` + Canvas + Sharp | Paper textures, noise gradients, background patterns | 10-50kb each (WebP) |
-| **4. Runtime shaders** | OGL (8kb) or Three.js + TSL | Interactive backgrounds, living textures | 8-150kb+ library |
+| **4. Runtime shaders** *(stretch scope)* | OGL (8kb) or Three.js + TSL, LYGIA for shader functions | Interactive backgrounds, living textures — not needed for V1 | 8-150kb+ library |
 
-**Cross-cutting:** `simplex-noise` (~2kb) drives organic variation in layers 2-4. LYGIA provides noise, SDF, and color functions for shaders.
-
-### The Recommended Stack
-
-| Layer | Tool | Purpose |
-|-------|------|---------|
-| **CSS baseline** | Layered gradients, `feTurbulence` grain, blend modes | Page ambiance, subtle texture, zero-cost |
-| **SVG generation** | Paper.js (organic), SVG.js (simple patterns) | Decorative elements, borders, section ornaments |
-| **Noise/math** | `simplex-noise` (~2kb) | Driving organic variation in all generators |
-| **Geometric computation** | `d3-delaunay` | Voronoi patterns, tessellation, Art Deco geometry |
-| **Runtime shaders** *(stretch scope)* | OGL (8kb) or Three.js + TSL | Interactive backgrounds, living textures — not needed for V1 |
-| **Shader utilities** *(stretch scope)* | LYGIA | Noise, SDF, color functions for shaders — pairs with runtime shaders above |
-| **Design-time sketching** | p5.js (editor only, not shipped) | Rapid prototyping of generative concepts |
-| **Build-time processing** | Sharp + SVGO | Optimize all generated assets |
-| **Spline curves** | `svg-catmull-rom-spline`, `catmullrom2bezier` | Art Nouveau flourishes and organic SVG paths |
+| Supporting tool | Purpose |
+|----------------|---------|
+| `simplex-noise` (~2kb) | Drives organic variation across layers 2-4 |
+| Sharp + SVGO | Build-time asset optimization |
+| p5.js (editor only, not shipped) | Design-time sketching and prototyping |
 
 ### What NOT to Include
 
