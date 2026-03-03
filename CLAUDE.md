@@ -17,6 +17,7 @@ Code will emerge in Phase 3 (Design & Build) after research, branding, and tech 
 ```
 .
 ├── CLAUDE.md              # This file — project context for agents
+├── .gitignore             # OS files, pinterest board, ASMV-3 source research
 ├── PRD.md                 # Product requirements document
 ├── research/
 │   ├── 01-asimov-collective-analysis.md        # Phase 0 — Asimov Collective reverse-engineering
