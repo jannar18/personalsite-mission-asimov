@@ -309,14 +309,14 @@ The wordmark is **pure typography** — the name set in Futura PT at medium weig
 
 ### Clear Space Rules
 
-Clear space around the wordmark is defined by the cap height of the chosen typeface. The minimum clear space on all sides equals 1x the cap height of the "p" in "parallax" at the rendered size. No other elements (navigation, images, decorative graphics) may intrude into this zone.
+Clear space around the wordmark is defined by the cap height of the typeface. The minimum clear space on all sides equals 1x the cap height of the "P" in "Parallax" at the rendered size. No other elements (navigation, images, decorative graphics) may intrude into this zone.
 
 ```
           ┌─────────────────────────────────────────────┐
           │                1x cap height                 │
           │  ┌───────────────────────────────────────┐  │
           │  │                                       │  │
-  1x cap  │  │     parallax practice                 │  │  1x cap
+  1x cap  │  │     Parallax                          │  │  1x cap
   height  │  │                                       │  │  height
           │  └───────────────────────────────────────┘  │
           │                1x cap height                 │

@@ -9,7 +9,7 @@ import Link from "next/link";
  * Features:
  * - Hide-on-scroll-down, show-on-scroll-up (Asimov pattern)
  * - Simple horizontal nav links
- * - Will receive logo/wordmark slot from ASMV-4 brand identity
+ * - Wordmark: "Parallax" in Futura PT (Jost stand-in) at medium weight
  */
 
 const navLinks = [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 /**
  * Shared metadata configuration.
- * Site title, description, and OG defaults — will be updated when brand identity lands.
+ * Site title, description, and OG defaults for Parallax (parallax.studio).
  */
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://parallax.studio";
