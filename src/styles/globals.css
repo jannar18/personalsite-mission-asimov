@@ -24,7 +24,7 @@
     padding: 0;
     background-color: var(--color-bg);
     color: var(--color-text-primary);
-    font-family: var(--font-sans), system-ui, sans-serif;
+    font-family: var(--font-serif), Georgia, serif;
     font-size: var(--text-base);
     line-height: var(--leading-normal);
     letter-spacing: var(--tracking-normal);
@@ -32,6 +32,7 @@
 
   /* ── Heading defaults ── */
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: var(--font-medium);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "About Parallax Practice — architecture, software, and AI through shifting perspectives.",
+  description: "About Parallax — architecture, software, and AI through shifting perspectives.",
 };
 
 /**

@@ -9,8 +9,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://parallax.studio";
 
 export const siteMetadata: Metadata = {
   title: {
-    default: "Parallax Practice",
-    template: "%s — Parallax Practice",
+    default: "Parallax",
+    template: "%s — Parallax",
   },
   description:
     "Depth revealed through perspective. Architecture, software, and AI.",
@@ -19,8 +19,8 @@ export const siteMetadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Parallax Practice",
-    title: "Parallax Practice",
+    siteName: "Parallax",
+    title: "Parallax",
     description:
       "Depth revealed through perspective. Architecture, software, and AI.",
   },

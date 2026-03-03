@@ -53,13 +53,13 @@ export default function Header() {
       }`}
       style={{ backgroundColor: "var(--color-bg)" }}
     >
-      <div className="mx-auto flex max-w-content items-center justify-between px-5 py-4">
+      <div className="mx-auto flex max-w-content items-center justify-between px-5 py-4 font-sans">
         <Link
           href="/"
           className="text-lg font-medium tracking-wide text-ink no-underline"
           style={{ letterSpacing: "var(--tracking-wide)" }}
         >
-          Parallax Practice
+          Parallax
         </Link>
 
         <nav className="flex gap-6">

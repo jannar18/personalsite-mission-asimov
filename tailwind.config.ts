@@ -34,9 +34,9 @@ const config: Config = {
         background: "#F5F0E8",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        sans: ["var(--font-sans)", "Futura PT", "Jost", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Cormorant Garamond", "Georgia", "serif"],
+        mono: ["var(--font-mono)", "Degular Mono", "DM Mono", "monospace"],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1.6" }],

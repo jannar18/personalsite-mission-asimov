@@ -12,7 +12,7 @@ export default function HomePage() {
           className="text-5xl font-light tracking-tighter text-ink md:text-6xl lg:text-7xl"
           style={{ letterSpacing: "var(--tracking-tight)" }}
         >
-          Parallax Practice
+          Parallax
         </h1>
         <p className="mt-6 max-w-text text-lg text-ink-light leading-relaxed">
           Depth revealed through perspective.
