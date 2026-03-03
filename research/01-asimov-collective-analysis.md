@@ -318,6 +318,14 @@ The layout reads like a **publication or monograph**. Key characteristics:
 - **Images are the primary content** -- text is secondary, minimal, and precise
 - **No sidebar, no secondary columns** on case study pages -- pure vertical flow
 
+### Full-Viewport "Slide" Pacing
+
+The core design unit is the **full-window view**. The scroll is single-column, but pacing is built around viewport-sized "slides" — each a complete composition with subtle boundaries (whitespace, tonal shifts, image edges). Design as a sequence of these moments, not a continuous stream.
+
+### Header Behavior
+
+Headers hide on scroll-down, reappear on scroll-up. Variants: persistent small icon only, opaque nav bar, translucent bar/logo, or hidden entirely until first scroll (Monumental Labs). The principle: **the header never competes with content on initial view.**
+
 ---
 
 ## 8. Animation & Interaction Patterns
