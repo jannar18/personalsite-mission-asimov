@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 
 /**
  * Shared metadata configuration.
- * Site title, description, and OG defaults — will be updated when brand identity lands.
+ * Site title, description, and OG defaults for Parallax (parallax.studio).
  */
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://parallax.studio";
 
 export const siteMetadata: Metadata = {
   title: {
-    default: "Parallax Practice",
-    template: "%s — Parallax Practice",
+    default: "Parallax",
+    template: "%s — Parallax",
   },
   description:
     "Depth revealed through perspective. Architecture, software, and AI.",
@@ -19,8 +19,8 @@ export const siteMetadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Parallax Practice",
-    title: "Parallax Practice",
+    siteName: "Parallax",
+    title: "Parallax",
     description:
       "Depth revealed through perspective. Architecture, software, and AI.",
   },

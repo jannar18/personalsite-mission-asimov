@@ -9,7 +9,7 @@ import Link from "next/link";
  * Features:
  * - Hide-on-scroll-down, show-on-scroll-up (Asimov pattern)
  * - Simple horizontal nav links
- * - Will receive logo/wordmark slot from ASMV-4 brand identity
+ * - Wordmark: "Parallax" in Futura PT (Jost stand-in) at medium weight
  */
 
 const navLinks = [
@@ -53,13 +53,13 @@ export default function Header() {
       }`}
       style={{ backgroundColor: "var(--color-bg)" }}
     >
-      <div className="mx-auto flex max-w-content items-center justify-between px-5 py-4">
+      <div className="mx-auto flex max-w-content items-center justify-between px-5 py-4 font-sans">
         <Link
           href="/"
           className="text-lg font-medium tracking-wide text-ink no-underline"
           style={{ letterSpacing: "var(--tracking-wide)" }}
         >
-          Parallax Practice
+          Parallax
         </Link>
 
         <nav className="flex gap-6">

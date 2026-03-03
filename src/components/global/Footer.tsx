@@ -11,13 +11,13 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border mt-24 pt-12 pb-16">
-      <div className="mx-auto max-w-content px-5">
+      <div className="mx-auto max-w-content px-5 font-sans">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <p
             className="text-sm text-ink-lighter"
             style={{ letterSpacing: "var(--tracking-wide)" }}
           >
-            &copy; {currentYear} Parallax Practice
+            &copy; {currentYear} Parallax
           </p>
 
           <nav className="flex gap-6">

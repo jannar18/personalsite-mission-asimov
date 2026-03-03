@@ -1,38 +1,38 @@
-import { Inter, Lora, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Jost, DM_Mono } from "next/font/google";
 
 /**
- * Font configuration using next/font/google.
+ * Font configuration — Parallax brand typography.
  *
- * Placeholder fonts — will be swapped when brand identity (ASMV-4) is finalized.
- * - Sans: Inter (placeholder for brand sans-serif)
- * - Serif: Lora (placeholder for brand serif)
- * - Mono: JetBrains Mono (placeholder for brand monospace)
+ * Final typeface decisions:
+ *   Headings / Nav: Futura PT (Adobe Fonts)    — stand-in: Jost
+ *   Body text:      Cormorant Garamond          — final (Google Fonts)
+ *   Mono / Labels:  Degular Mono (Adobe Fonts)  — stand-in: DM Mono
  *
- * next/font automatically handles:
- * - Self-hosting (no external requests to Google)
- * - Subsetting
- * - Preloading
- * - font-display: swap
- * - Zero layout shift
+ * Upgrade path: Acquire Futura PT and Degular Mono web font licenses
+ * (e.g., via MyFonts or a foundry that permits self-hosting), place
+ * .woff2 files in public/fonts/, then swap to next/font/local.
+ * Alternatively, use Adobe Fonts' hosted web project (requires their
+ * CSS embed instead of next/font). The CSS variable names stay the
+ * same — no downstream changes needed either way.
  */
 
-export const fontSans = Inter({
-  subsets: ["latin"],
+export const fontSans = Jost({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-sans",
   display: "swap",
   weight: ["300", "400", "500", "600"],
 });
 
-export const fontSerif = Lora({
-  subsets: ["latin"],
+export const fontSerif = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-serif",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
 });
 
-export const fontMono = JetBrains_Mono({
-  subsets: ["latin"],
+export const fontMono = DM_Mono({
+  subsets: ["latin", "latin-ext"],
   variable: "--font-mono",
   display: "swap",
-  weight: ["400", "500"],
+  weight: ["300", "400", "500"],
 });
