@@ -9,7 +9,8 @@ A personal website for Julianna at the quality level of an Asimov Collective sit
 - **Styling:** Tailwind CSS 3 + CSS custom properties (design tokens)
 - **Content:** MDX files in `src/content/`, loaded via `gray-matter` + `next-mdx-remote`
 - **Package manager:** pnpm
-- **Fonts:** Placeholder Google Fonts via `next/font` (pending ASMV-4 brand identity)
+- **Fonts:** Jost + Cormorant Garamond + DM Mono via `next/font/google` (stand-ins for Futura PT + Degular Mono; see `brand-guide.md` §4)
+- **Brand:** "Parallax" / parallax.studio — full brand guide in `brand-guide.md`
 
 Research, PRD, and task tracking remain in their original locations.
 
@@ -20,6 +21,7 @@ Research, PRD, and task tracking remain in their original locations.
 ├── CLAUDE.md                # This file — project context for agents
 ├── .gitignore               # OS, Node, Next.js, pinterest board, ASMV-3 source research
 ├── PRD.md                   # Product requirements document
+├── brand-guide.md           # Brand identity — name, domain, colors, typography, voice
 ├── package.json             # pnpm dependencies
 ├── pnpm-lock.yaml
 ├── next.config.mjs          # Next.js configuration
@@ -59,7 +61,7 @@ Research, PRD, and task tracking remain in their original locations.
 │   │
 │   ├── lib/
 │   │   ├── content.ts       # Content loading utilities (MDX + frontmatter)
-│   │   ├── fonts.ts         # next/font configuration (placeholder fonts)
+│   │   ├── fonts.ts         # Brand fonts (Jost/Cormorant Garamond/DM Mono)
 │   │   └── metadata.ts      # Shared metadata helpers
 │   │
 │   └── styles/
@@ -89,6 +91,9 @@ Research, PRD, and task tracking remain in their original locations.
 | Content format | MDX via `next-mdx-remote` + `gray-matter` | Rich content with embedded React components; files in `src/content/` |
 | Deployment | Vercel (not yet connected) | First-party Next.js support, image optimization CDN, preview deploys |
 | Tech stack | Next.js 15 (App Router) + Tailwind CSS 3 + pnpm | Matches Asimov Collective stack; RSC by default, client islands for interactivity |
+| Site name | Parallax | Single word — captures shifting perspective across disciplines |
+| Domain | parallax.studio | Short, memorable, studio connotation |
+| Typography | Futura PT (headings) + Cormorant Garamond (body) + Degular Mono (code) | Geometric precision for structure, humanist warmth for substance; see `brand-guide.md` §4 |
 | Design philosophy | "The site IS the bridge" | PRD §8 — architecture × software demonstrated, not explained |
 
 ## Design Language References
@@ -147,7 +152,7 @@ The `research/asset-workflows/` directory contains runnable starter scripts and 
 - **Imports:** Path alias `@/*` maps to `src/*`. Prefer `@/components/...`, `@/lib/...`, etc.
 - **Styling:** Tailwind utility classes. Design tokens in `src/styles/tokens.css` as CSS custom properties. Both are accessible — use Tailwind for layout/spacing, CSS vars for semantic values shared with future interactive components.
 - **Content:** MDX files in `src/content/<collection>/`. Frontmatter parsed by `gray-matter`. Content loaded via helpers in `src/lib/content.ts`.
-- **Fonts:** Configured in `src/lib/fonts.ts` using `next/font/google`. CSS variables `--font-sans`, `--font-serif`, `--font-mono` applied to `<html>`. Swap fonts by changing the import, not the variable names.
+- **Fonts:** Configured in `src/lib/fonts.ts` via `next/font/google`. Body defaults to serif (Cormorant Garamond); headings default to sans (Futura PT/Jost) via `globals.css`. Navigation and structural UI use `font-sans` explicitly. CSS variables `--font-sans`, `--font-serif`, `--font-mono` applied to `<html>`. Adobe Fonts upgrade: swap to `next/font/local`, keep same variable names.
 
 ## Git Workflow
 
@@ -194,6 +199,8 @@ When building portfolio pages, follow these principles:
 - **Porter Robinson research depth:** The deep research format (tech stack breakdown + "why it matters" + design principles extracted) works well. Use this format for future research deliverables.
 - **Lattice initialized early:** Task tracking was set up before code exists — good for maintaining phase discipline. Tasks map 1:1 to PRD phases.
 - **Scope discipline (2026-03-02):** Active Theory / Porter Robinson interactive work is inspiring but out of scope for V1. The research is banked. V1 = Asimov-level quality (typography, restraint, editorial pacing). Architecture the codebase so interactive layers (WebGL, shaders, physics) can be added later without a rewrite. Don't let "play within polish" become scope creep — nail the polish first.
+- **Nested Claude nesting (2026-03-03):** `claude -p` fails inside a Claude Code session due to `CLAUDECODE` env var. Fix: `env -u CLAUDECODE claude -p "..." --dangerously-skip-permissions`. This is needed for the /wrap-it-up quad review pattern.
+- **Adobe Fonts ≠ self-host (2026-03-03):** Adobe Fonts (Creative Cloud) does not permit exporting .woff2 for self-hosting. Options: (1) use Adobe's hosted web project CSS embed, (2) buy separate web license from MyFonts/foundry for `next/font/local`, or (3) keep Google Fonts stand-ins (Jost, DM Mono). Documented in `brand-guide.md` §4.
 
 ## Lattice
 
