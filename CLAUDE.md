@@ -52,6 +52,7 @@ Code will emerge in Phase 3 (Design & Build) after research, branding, and tech 
 ## Design Language References
 
 - **V1 target:** Asimov Collective — restrained typography, editorial pacing, quiet navigation, generous whitespace. This is the quality bar for launch.
+- **How Asimov actually ships:** No WebGL, Three.js, shaders, or Canvas on any production client site. Rich motion is pre-rendered video (MP4), not runtime graphics. The web layer is CSS transitions + smooth scroll + optimized images. The impressive visuals come from pre-production, not from heavy frontend tech.
 - **Visual language:** Defined in `research/03-graphics-pipeline-final.md` §2. Warm earth palette (terracotta, amber, ochre, cream, sage), stipple/grain textures, watercolor-wash edges, collage/layering as the central design move. Transparency support is a first-class requirement.
 - **Future (banked):** Porter Robinson / Active Theory — browser as portal, WebGL, physics sim, exploration over scrolling. Research is complete (Doc 02) and available when we're ready. Architecture the site so these layers can be added without a rewrite.
 - **Content:** "Studio desk" metaphor — populated but not messy, daily entries that feel like looking at a designer's desk

@@ -274,7 +274,7 @@ material.colorNode = mix(color('#1a1a2e'), color('#e2d1c3'), n);
 
 #### Verdict
 
-**Three.js/TSL for any runtime 3D or complex shader effects.** The WebGPU transition is complete — write TSL and target all browsers. For simple shader backgrounds, consider **OGL** to keep bundle size minimal. Use **tsl-textures** as a starting point for procedural material ideas.
+**Stretch scope, not V1.** V1 hits its quality bar with CSS, SVG, and build-time Canvas — no WebGL needed. Three.js/TSL becomes relevant for the interactive phases (Porter Robinson territory). When we get there, prefer **OGL** (8kb) for simple shader backgrounds before reaching for full Three.js (~150kb+).
 
 ### 3.4 GLSL / Shader Art
 
@@ -328,7 +328,7 @@ Shadertoy uses its own uniform conventions (`iTime`, `iResolution`, `iMouse`). T
 
 #### Verdict
 
-**LYGIA + TSL is the shader strategy.** Use LYGIA's noise, SDF, and color functions within TSL shaders for Three.js. Prototype in Shadertoy or VS Code extension, then port to production. For simple backgrounds without Three.js overhead, use `shader-web-background` or `shadertoy-react`.
+**LYGIA + TSL is the shader strategy — stretch scope, not V1.** When we're ready for runtime shader effects, use LYGIA functions within TSL shaders. Prototype in Shadertoy or VS Code extension, then port. For simple backgrounds without Three.js overhead, use `shader-web-background` or `shadertoy-react`.
 
 ### 3.5 Canvas API — Generative Patterns & Noise Textures
 
@@ -377,7 +377,7 @@ The [Gray-Scott model](https://github.com/jasonwebb/reaction-diffusion-playgroun
 
 #### Verdict
 
-**Canvas API for build-time texture generation.** Use `simplex-noise` + Canvas to generate paper textures, noise gradients, and subtle background patterns at build time. Export as WebP for production. For runtime effects, prefer shaders (GPU) over Canvas (CPU).
+**Canvas API for build-time texture generation.** Use `simplex-noise` + Canvas to generate paper textures, noise gradients, and subtle background patterns at build time. Export as WebP for production. For runtime effects, prefer shaders (GPU) over Canvas (CPU). Note: Canvas also serves as the **export bridge for shaders** — render a shader via Three.js/OGL, then capture the output with `canvas.toBlob()` to bake it as a static image. This lets you prototype textures as live shaders, then ship them as lightweight WebP without any WebGL in production.
 
 ### 3.6 CSS-Based Generative Effects
 
@@ -845,8 +845,8 @@ The site's visual system has four layers, from lightest to heaviest. Each layer 
 | **SVG generation** | Paper.js (organic), SVG.js (simple patterns) | Decorative elements, borders, section ornaments |
 | **Noise/math** | `simplex-noise` (~2kb) | Driving organic variation in all generators |
 | **Geometric computation** | `d3-delaunay` | Voronoi patterns, tessellation, Art Deco geometry |
-| **Runtime shaders** | OGL (8kb) or Three.js + TSL | Interactive backgrounds, living textures |
-| **Shader utilities** | LYGIA | Noise, SDF, color functions for shaders |
+| **Runtime shaders** *(stretch scope)* | OGL (8kb) or Three.js + TSL | Interactive backgrounds, living textures — not needed for V1 |
+| **Shader utilities** *(stretch scope)* | LYGIA | Noise, SDF, color functions for shaders — pairs with runtime shaders above |
 | **Design-time sketching** | p5.js (editor only, not shipped) | Rapid prototyping of generative concepts |
 | **Build-time processing** | Sharp + SVGO | Optimize all generated assets |
 | **Spline curves** | `svg-catmull-rom-spline`, `catmullrom2bezier` | Art Nouveau flourishes and organic SVG paths |

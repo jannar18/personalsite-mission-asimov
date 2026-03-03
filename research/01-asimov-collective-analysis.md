@@ -148,7 +148,7 @@ Across all 12 projects, the most common service tags are:
 
 3. **CMS varies by project.** BaseHub for their own site, TinaCMS for content-heavy sites, Sanity.io for newer projects. The choice seems client-dependent, not dogmatic.
 
-4. **Animation is restrained.** No heavy GSAP or Framer Motion detected on most sites. The primary animation tool is CSS transitions + a custom lerp-based smooth scroll implementation (lerp: 0.8). Lottie is used for specific micro-interactions (Hadrian). Video is preferred over programmatic animation for rich motion.
+4. **Animation is restrained — and rich motion is pre-rendered, not runtime.** No WebGL, Three.js, shaders, or Canvas detected on any production client site (confirmed on Venice AI and Shinkei Systems, March 2026). The primary animation tools are CSS transitions + Lenis/lerp smooth scroll. Lottie for specific micro-interactions (Hadrian). Impressive 3D-looking visuals (e.g., Shinkei's spinning fish) are pre-rendered video (MP4), not real-time graphics. The heavy lifting happens in pre-production; the web layer stays lean.
 
 5. **Custom fonts are delivered as OTF/WOFF2** via Next.js font optimization -- no Google Fonts, no CDN. Every project has its own typography.
 
