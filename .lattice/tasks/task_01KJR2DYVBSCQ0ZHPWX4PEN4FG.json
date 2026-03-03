@@ -10,7 +10,7 @@
   "done_at": null,
   "evidence_refs": [],
   "id": "task_01KJR2DYVBSCQ0ZHPWX4PEN4FG",
-  "last_event_id": "ev_01KJR2F05WR91YMFKZ2T8826BJ",
+  "last_event_id": "ev_01KJTBZNR97N12A9GWHMJ891G7",
   "last_status_changed_at": "2026-03-02T20:04:30Z",
   "priority": "critical",
   "relationships_out": [
@@ -27,6 +27,13 @@
       "note": null,
       "target_task_id": "task_01KJR2DT7H011JR7N4BB7WVZ02",
       "type": "depends_on"
+    },
+    {
+      "created_at": "2026-03-03T17:29:57Z",
+      "created_by": "human:jules",
+      "note": null,
+      "target_task_id": "task_01KJR2DRR8S64MH1P9V2A86H05",
+      "type": "depends_on"
     }
   ],
   "reopened_count": 0,
@@ -36,6 +43,6 @@
   "tags": null,
   "title": "Design & build site pages",
   "type": "task",
-  "updated_at": "2026-03-02T20:05:04Z",
+  "updated_at": "2026-03-03T17:29:57Z",
   "urgency": null
 }

@@ -1,0 +1,92 @@
+/*
+ * Design Tokens — CSS Custom Properties
+ * Source of truth for the design system.
+ * Referenced by Tailwind config AND available to future interactive components.
+ */
+
+:root {
+  /* ── Typography Scale (minor third / 1.2 ratio) ── */
+  --text-xs:    0.75rem;    /* 12px — metadata, labels */
+  --text-sm:    0.875rem;   /* 14px — captions, small body */
+  --text-base:  1rem;       /* 16px — body text */
+  --text-lg:    1.125rem;   /* 18px — large body, lead paragraphs */
+  --text-xl:    1.25rem;    /* 20px — small headings */
+  --text-2xl:   1.5rem;     /* 24px — section headings */
+  --text-3xl:   1.875rem;   /* 30px — page headings */
+  --text-4xl:   2.25rem;    /* 36px — hero subheadings */
+  --text-5xl:   3rem;       /* 48px — hero headings */
+  --text-6xl:   3.75rem;    /* 60px — display / project titles */
+  --text-7xl:   4.5rem;     /* 72px — maximum display */
+
+  /* ── Font Weights (restrained, following Asimov pattern) ── */
+  --font-light:    300;
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;     /* used sparingly */
+
+  /* ── Line Heights ── */
+  --leading-tight:   1.2;   /* headings */
+  --leading-snug:    1.35;  /* subheadings */
+  --leading-normal:  1.6;   /* body text */
+  --leading-relaxed: 1.75;  /* long-form reading */
+
+  /* ── Letter Spacing ── */
+  --tracking-tight:  -0.02em;  /* large display text */
+  --tracking-normal:  0;       /* body */
+  --tracking-wide:    0.05em;  /* uppercase labels, nav items */
+  --tracking-wider:   0.1em;   /* monospace labels */
+
+  /* ── Spacing (8px base unit) ── */
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px — Asimov mobile padding */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px — minimum section spacing */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px — generous section spacing */
+  --space-40:  10rem;     /* 160px — maximum section spacing */
+
+  /* ── Semantic Spacing ── */
+  --section-gap:       var(--space-24);
+  --section-gap-lg:    var(--space-32);
+  --content-padding-x: var(--space-5);
+  --content-max-width: 72rem;    /* 1152px */
+  --text-max-width:    40rem;    /* 640px — text column narrower than images */
+
+  /* ── Color: Primary Warmth ── */
+  --color-terracotta:    #C4724E;  /* Primary accent — the "one color" */
+  --color-amber:         #D4A76A;  /* Warm secondary */
+  --color-cream:         #F5F0E8;  /* Background — warm off-white */
+  --color-warm-gray:     #B5AFA6;  /* Neutral mid-tone */
+
+  /* ── Color: Secondary Earth ── */
+  --color-sage:          #8B9E7E;  /* Nature accent */
+  --color-dusty-rose:    #C9A5A0;  /* Subtle warmth */
+  --color-slate:         #7A8B9A;  /* Cool contrast */
+
+  /* ── Color: Accent (sparingly) ── */
+  --color-coral:         #C95D45;  /* High-contrast accent */
+
+  /* ── Color: Neutrals ── */
+  --color-ink:           #2C2824;  /* Primary text — warm near-black */
+  --color-ink-light:     #5C554E;  /* Secondary text */
+  --color-ink-lighter:   #8A847D;  /* Tertiary text, metadata */
+  --color-border:        #E2DCD5;  /* Subtle borders */
+  --color-surface:       #FAF8F5;  /* Elevated surface (cards) */
+  --color-background:    #F5F0E8;  /* Page background (cream) */
+
+  /* ── Color: Semantic ── */
+  --color-text-primary:    var(--color-ink);
+  --color-text-secondary:  var(--color-ink-light);
+  --color-text-tertiary:   var(--color-ink-lighter);
+  --color-accent:          var(--color-terracotta);
+  --color-accent-hover:    var(--color-coral);
+  --color-bg:              var(--color-background);
+  --color-bg-surface:      var(--color-surface);
+}
