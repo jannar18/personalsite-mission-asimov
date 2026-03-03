@@ -7,11 +7,11 @@
   "created_by": "agent:claude-cli",
   "custom_fields": {},
   "description": "Phase 2: Develop studio/practice name capturing the architecture + software + AI intersection. Domain availability check. Define visual identity basics (typefaces, color palette, logo/wordmark). Write one-line positioning statement. Register domain. Deliverable: brand guide.",
-  "done_at": null,
+  "done_at": "2026-03-03T21:41:46Z",
   "evidence_refs": [],
   "id": "task_01KJR2DT7H011JR7N4BB7WVZ02",
-  "last_event_id": "ev_01KJTJ5W640YB3HS1ZHYQ42BAB",
-  "last_status_changed_at": "2026-03-03T19:16:08Z",
+  "last_event_id": "ev_01KJTTCSASQQ7XPEGA7VWCK9WQ",
+  "last_status_changed_at": "2026-03-03T21:41:46Z",
   "priority": "high",
   "relationships_out": [
     {
@@ -25,10 +25,10 @@
   "reopened_count": 1,
   "schema_version": 1,
   "short_id": "ASMV-4",
-  "status": "in_progress",
+  "status": "done",
   "tags": null,
   "title": "Brand identity & naming",
   "type": "task",
-  "updated_at": "2026-03-03T19:18:11Z",
+  "updated_at": "2026-03-03T21:41:46Z",
   "urgency": null
 }
