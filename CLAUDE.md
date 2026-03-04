@@ -201,6 +201,10 @@ When building portfolio pages, follow these principles:
 - **Scope discipline (2026-03-02):** Active Theory / Porter Robinson interactive work is inspiring but out of scope for V1. The research is banked. V1 = Asimov-level quality (typography, restraint, editorial pacing). Architecture the codebase so interactive layers (WebGL, shaders, physics) can be added later without a rewrite. Don't let "play within polish" become scope creep — nail the polish first.
 - **Nested Claude nesting (2026-03-03):** `claude -p` fails inside a Claude Code session due to `CLAUDECODE` env var. Fix: `env -u CLAUDECODE claude -p "..." --dangerously-skip-permissions`. This is needed for the /wrap-it-up quad review pattern.
 - **Adobe Fonts ≠ self-host (2026-03-03):** Adobe Fonts (Creative Cloud) does not permit exporting .woff2 for self-hosting. Options: (1) use Adobe's hosted web project CSS embed, (2) buy separate web license from MyFonts/foundry for `next/font/local`, or (3) keep Google Fonts stand-ins (Jost, DM Mono). Documented in `brand-guide.md` §4.
+- **Wireframes/visual concepts = needs_human (2026-03-03):** Never close a design/wireframe task without human review. Visual concepts require Julianna's approval before implementation begins. Move to `needs_human`, not `done`.
+- **Ship visible output first (2026-03-03):** Build the page, create components as needed along the way. Don't build a component library for a page that doesn't exist. Infrastructure-first is the wrong priority for this project — the MVP is a visible homepage.
+- **One task = one branch = one PR (2026-03-03):** Never bundle multiple tasks into a single branch or PR. Each Lattice task gets its own feature branch and its own pull request.
+- **Stay in scope (2026-03-03):** If a task says "create design system components," don't also refactor every page file. That's a different task. Touching files outside your task's scope is scope creep.
 
 ## Lattice
 
