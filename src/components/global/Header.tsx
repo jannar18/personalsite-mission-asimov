@@ -74,7 +74,7 @@ export default function Header() {
       {/* Parallax wordmark — left side */}
       <Link
         href="/"
-        className="absolute left-[5vw] font-light text-ink/80 no-underline transition-colors hover:text-ink"
+        className="absolute left-[5vw] font-sans font-light text-ink/80 no-underline transition-colors hover:text-ink"
         style={{
           fontSize: "clamp(1.1rem, 1.5vw, 1.4rem)",
           letterSpacing: "var(--tracking-wide)",

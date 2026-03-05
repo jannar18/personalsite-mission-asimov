@@ -20,7 +20,7 @@ export default function HomePage() {
       <section className="relative flex h-screen items-center justify-center bg-slate px-[5vw]">
         <div className="text-center">
           <h1
-            className="font-light tracking-tighter text-cream"
+            className="font-sans font-light not-italic tracking-tighter text-cream"
             style={{
               fontSize: "clamp(3rem, 6vw, 7rem)",
               letterSpacing: "var(--tracking-tight)",
@@ -45,7 +45,7 @@ export default function HomePage() {
         <div className="flex items-center bg-cream px-[5vw] py-[5vh]">
           <div>
             <h2
-              className="font-light text-ink"
+              className="text-ink"
               style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
             >
               Heading placeholder
@@ -66,7 +66,7 @@ export default function HomePage() {
         <div className="flex items-center bg-cream px-[5vw] py-[5vh]">
           <div>
             <h2
-              className="font-light text-ink"
+              className="text-ink"
               style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
             >
               Heading placeholder
@@ -90,7 +90,7 @@ export default function HomePage() {
         <div className="flex items-center bg-dusty-rose px-[5vw] py-[5vh]">
           <div>
             <h2
-              className="font-light text-ink"
+              className="text-ink"
               style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
             >
               Heading placeholder
@@ -107,7 +107,7 @@ export default function HomePage() {
         <div className="flex items-center bg-sage px-[5vw] py-[5vh]">
           <div>
             <h2
-              className="font-light text-ink"
+              className="text-ink"
               style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
             >
               Heading placeholder
