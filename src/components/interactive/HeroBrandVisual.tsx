@@ -61,7 +61,24 @@ export default function HeroBrandVisual() {
       if (scrollRange <= 0) return;
 
       const progress = Math.max(0, Math.min(1, -rect.top / scrollRange));
-      stateRef.current.targetRotation = progress;
+
+      // Ease function for smooth fold/unfold
+      const ease = (t: number) =>
+        t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+      // Fold in → hold merged → unfold back to thin lines
+      let rotation: number;
+      if (progress <= 0.35) {
+        rotation = ease(progress / 0.35);
+      } else if (progress <= 0.65) {
+        rotation = 1;
+      } else {
+        rotation = 1 - ease((progress - 0.65) / 0.35);
+      }
+
+      // Set directly — no lerp lag for scroll-driven animation
+      stateRef.current.rotation = rotation;
+      stateRef.current.targetRotation = rotation;
 
       if (progress > 0.03) setHintVisible(false);
     };
@@ -143,7 +160,7 @@ export default function HeroBrandVisual() {
   }, []);
 
   return (
-    <div ref={scrollRef} className="relative" style={{ height: "300vh" }}>
+    <div ref={scrollRef} className="relative" style={{ height: "200vh" }}>
       <section
         ref={stickyRef}
         className="sticky top-0 h-screen overflow-hidden"
@@ -160,36 +177,6 @@ export default function HeroBrandVisual() {
           className="absolute inset-0 pointer-events-none"
           style={{ zIndex: 2 }}
         >
-          {/* Brand mark */}
-          <div className="absolute top-7 left-1/2 -translate-x-1/2 flex flex-col items-center">
-            <div className="flex items-center gap-2.5">
-              <div
-                className="w-3 h-3 border rotate-45 opacity-50"
-                style={{ borderColor: "rgba(44,40,36,0.35)" }}
-              />
-              <div
-                className="w-4 h-4 border rotate-45 opacity-70 relative"
-                style={{ borderColor: "rgba(44,40,36,0.35)" }}
-              >
-                <div
-                  className="absolute inset-[3px] border"
-                  style={{ borderColor: "rgba(44,40,36,0.35)" }}
-                />
-              </div>
-              <div
-                className="w-3 h-3 border rotate-45 opacity-50"
-                style={{ borderColor: "rgba(44,40,36,0.35)" }}
-              />
-            </div>
-            <div
-              className="w-px h-7"
-              style={{
-                background:
-                  "linear-gradient(to bottom, rgba(44,40,36,0.35), transparent)",
-              }}
-            />
-          </div>
-
           {/* Left metadata column */}
           <div
             className="absolute left-7 top-1/2 -translate-y-1/2 font-mono uppercase whitespace-pre"
