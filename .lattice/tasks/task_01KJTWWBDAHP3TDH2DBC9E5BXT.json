@@ -8,17 +8,23 @@
       "repo": null
     }
   ],
-  "comment_count": 1,
+  "comment_count": 2,
   "complexity": null,
   "created_at": "2026-03-03T22:25:14Z",
   "created_by": "agent:claude-opus-4",
   "custom_fields": {},
   "description": null,
-  "done_at": null,
-  "evidence_refs": [],
+  "done_at": "2026-03-06T22:53:01Z",
+  "evidence_refs": [
+    {
+      "id": "ev_01KK2NN7T3KTZYJ5A8D6BFNPZR",
+      "role": "review",
+      "source_type": "comment"
+    }
+  ],
   "id": "task_01KJTWWBDAHP3TDH2DBC9E5BXT",
-  "last_event_id": "ev_01KK2NDQ33TS5Y47SNPR4CKG0J",
-  "last_status_changed_at": "2026-03-03T22:25:14Z",
+  "last_event_id": "ev_01KK2NNCMD9PDPNY233E357Z45",
+  "last_status_changed_at": "2026-03-06T22:53:01Z",
   "priority": "critical",
   "relationships_out": [
     {
@@ -39,10 +45,10 @@
   "reopened_count": 0,
   "schema_version": 1,
   "short_id": "ASMV-18",
-  "status": "backlog",
+  "status": "done",
   "tags": null,
   "title": "Daily update skill (/update-site)",
   "type": "task",
-  "updated_at": "2026-03-06T22:48:50Z",
+  "updated_at": "2026-03-06T22:53:01Z",
   "urgency": null
 }
