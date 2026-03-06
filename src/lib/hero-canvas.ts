@@ -431,7 +431,8 @@ export function drawFrame(
   s.frame++;
   s.mouseX += (s.targetMX - s.mouseX) * 0.05;
   s.mouseY += (s.targetMY - s.mouseY) * 0.05;
-  s.rotation += (s.targetRotation - s.rotation) * 0.04;
+  // rotation is set directly by scroll handler — no lerp lag
+  s.rotation = s.targetRotation;
 
   ctx.fillStyle = BG_COLOR;
   ctx.fillRect(0, 0, s.W, s.H);
