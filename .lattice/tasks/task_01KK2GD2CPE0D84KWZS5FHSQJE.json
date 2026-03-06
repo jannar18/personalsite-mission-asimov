@@ -1,6 +1,13 @@
 {
-  "assigned_to": null,
-  "branch_links": [],
+  "assigned_to": "agent:claude-opus-4-asmv43",
+  "branch_links": [
+    {
+      "branch": "feature/asmv-43-mobile-nav",
+      "linked_at": "2026-03-06T22:42:33Z",
+      "linked_by": "agent:claude-opus-4-asmv43",
+      "repo": null
+    }
+  ],
   "comment_count": 0,
   "complexity": null,
   "created_at": "2026-03-06T21:21:05Z",
@@ -10,17 +17,17 @@
   "done_at": null,
   "evidence_refs": [],
   "id": "task_01KK2GD2CPE0D84KWZS5FHSQJE",
-  "last_event_id": "ev_01KK2GD2CS9AN8PK0392VVKJSV",
-  "last_status_changed_at": "2026-03-06T21:21:05Z",
+  "last_event_id": "ev_01KK2N273WPGZKQ00NJ96RBBR1",
+  "last_status_changed_at": "2026-03-06T22:42:23Z",
   "priority": "high",
   "relationships_out": [],
   "reopened_count": 0,
   "schema_version": 1,
   "short_id": "ASMV-43",
-  "status": "backlog",
+  "status": "in_progress",
   "tags": null,
   "title": "Add mobile navigation pattern (nav unreachable on touch after hero)",
   "type": "task",
-  "updated_at": "2026-03-06T21:21:05Z",
+  "updated_at": "2026-03-06T22:42:33Z",
   "urgency": null
 }
