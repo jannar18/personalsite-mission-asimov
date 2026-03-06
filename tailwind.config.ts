@@ -9,10 +9,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* Brand */
-        coral: "#C95D45",
+        /* Primary */
+        vermillion: { DEFAULT: "#CC4422", light: "#D86838" },
         cream: "#F5F0E8",
-        sage: "#8B9E7E",
+        oxblood: "#3C2A28",
+        forest: "#2B3A22",
+
+        /* Burgundy / Brick */
+        burgundy: "#5C3D38",
+        brick: "#7A5650",
+
+        /* Warm spectrum */
+        apricot: "#E8944A",
+        "amber-light": "#EDB872",
+
+        /* Greens */
+        moss: "#4E6430",
+        meadow: "#98AA52",
+        chartreuse: "#CDDA82",
+
+        /* Earth */
+        "dark-caramel": "#7A4400",
+        amber: "#B06A10",
+        honey: "#C89858",
+        wheat: "#DCBC8A",
 
         /* Neutrals */
         ink: {

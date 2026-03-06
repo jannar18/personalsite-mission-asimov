@@ -102,25 +102,61 @@ The three statements marked in **bold** above (1, 3, and 7) are recommended as f
 
 ### Palette Overview
 
-A reduced, intentional palette: three brand colors plus warm neutrals. Coral is the primary accent, Cream is the ground, and Sage provides a natural counterpoint. The ink neutrals handle all text hierarchy. Every other color was cut for clarity.
+Extracted from Julianna's photographs — ranunculus flowers, Portuguese stone house collages, Scandinavian brick, Japanese temple vermillion, weathered timber. The palette is organized into primary colors (the structural backbone of the brand) and an extended palette (available for richness and variation).
 
-### Brand Colors
+### Primary Colors
 
-| Name | Hex | HSL | RGB | Role |
-|------|-----|-----|-----|------|
-| **Coral** | `#C95D45` | `11°, 52%, 53%` | `201, 93, 69` | Primary accent — the "one color." Links, active states, emphasis, hover highlights. |
-| **Cream** | `#F5F0E8` | `37°, 46%, 93%` | `245, 240, 232` | Page background. Warm off-white — aged paper, never pure white. |
-| **Sage** | `#8B9E7E` | `100°, 13%, 55%` | `139, 158, 126` | Secondary accent. Section backgrounds, decorative elements, nature. |
+| Name | Hex | Role |
+|------|-----|------|
+| **Vermillion** | `#CC4422` | Primary accent — the "one color." Links, active states, emphasis. Ranunculus deep + collage ink. |
+| **Cream** | `#F5F0E8` | Page background. Warm off-white — aged paper, never pure white. |
+| **Ink** | `#2C2824` | Primary text, dark backgrounds. Warm near-black — never pure `#000`. |
+| **Oxblood** | `#3C2A28` | Dark accent. Deepest brick shadow — rich, near-black warmth. |
+| **Forest** | `#2B3A22` | Dark accent. Deep shadow green — grounding, natural. |
+
+### Extended Palette
+
+#### Burgundy / Brick
+
+| Name | Hex | Source |
+|------|-----|--------|
+| Burgundy | `#5C3D38` | Brick field |
+| Brick | `#7A5650` | Mid-tone brick |
+
+#### Vermillion Family
+
+| Name | Hex | Source |
+|------|-----|--------|
+| Vermillion Light | `#D86838` | Temple red wall |
+| Apricot | `#E8944A` | Lighter ranunculus petals |
+| Amber Light | `#EDB872` | Inner petals, sandstone glow |
+
+#### Greens
+
+| Name | Hex | Source |
+|------|-----|--------|
+| Moss | `#4E6430` | Deep meadow green |
+| Meadow | `#98AA52` | Sunlit grass |
+| Chartreuse | `#CDDA82` | Light meadow, spring grass |
+
+#### Earth
+
+| Name | Hex | Source |
+|------|-----|--------|
+| Dark Caramel | `#7A4400` | Burnt caramel, dark amber glass |
+| Amber | `#B06A10` | Amber glass, warm resin |
+| Honey | `#C89858` | Light caramel, warm gold |
+| Wheat | `#DCBC8A` | Pale caramel, warm parchment |
 
 ### Neutrals
 
-| Name | Hex | HSL | RGB | Role |
-|------|-----|-----|-----|------|
-| **Ink** | `#2C2824` | `30°, 10%, 16%` | `44, 40, 36` | Primary text, dark backgrounds. Warm near-black — never pure `#000`. |
-| **Ink Light** | `#5C554E` | `30°, 9%, 33%` | `92, 85, 78` | Secondary text, subheadings, less prominent body copy. |
-| **Ink Lighter** | `#8A847D` | `32°, 5%, 51%` | `138, 132, 125` | Tertiary text, metadata, timestamps, labels. |
-| **Border** | `#E2DCD5` | `32°, 18%, 86%` | `226, 220, 213` | Subtle dividers, card edges, table borders. |
-| **Surface** | `#FAF8F5` | `36°, 33%, 97%` | `250, 248, 245` | Elevated surface (cards, modal backgrounds). Slightly lighter than Cream. |
+| Name | Hex | Role |
+|------|-----|------|
+| **Ink** | `#2C2824` | Primary text — warm near-black. |
+| **Ink Light** | `#5C554E` | Secondary text, subheadings. |
+| **Ink Lighter** | `#8A847D` | Tertiary text, metadata, timestamps. |
+| **Border** | `#E2DCD5` | Subtle dividers, card edges. |
+| **Surface** | `#FAF8F5` | Elevated surface (cards). Slightly lighter than Cream. |
 
 ### WCAG AA Contrast Ratios
 
@@ -133,29 +169,31 @@ WCAG AA requires 4.5:1 for normal text, 3.0:1 for large text (18px+ or 14px+ bol
 | Ink | `#2C2824` | **10.3:1** | Pass | Pass |
 | Ink Light | `#5C554E` | **5.2:1** | Pass | Pass |
 | Ink Lighter | `#8A847D` | **3.2:1** | Fail | Pass |
-| Coral | `#C95D45` | **3.2:1** | Fail | Pass |
+| Vermillion | `#CC4422` | **3.6:1** | Fail | Pass |
 
 #### Cream (`#F5F0E8`) on Color Backgrounds
 
 | Background | Hex | Contrast (Cream on bg) | Normal Text (AA) | Large Text (AA) |
 |------------|-----|----------------------|------------------|-----------------|
 | Ink | `#2C2824` | **10.3:1** | Pass | Pass |
-| Ink Light | `#5C554E` | **5.2:1** | Pass | Pass |
-| Coral | `#C95D45` | **3.2:1** | Fail | Pass |
-| Sage | `#8B9E7E` | **2.8:1** | Fail | Fail |
+| Oxblood | `#3C2A28` | **9.4:1** | Pass | Pass |
+| Forest | `#2B3A22` | **9.1:1** | Pass | Pass |
+| Vermillion | `#CC4422` | **3.6:1** | Fail | Pass |
+| Burgundy | `#5C3D38` | **6.0:1** | Pass | Pass |
+| Moss | `#4E6430` | **5.4:1** | Pass | Pass |
 
 ### Usage Rules
 
 1. **Body text** must always be Ink (`#2C2824`) or Ink Light (`#5C554E`) on Cream/Surface backgrounds.
-2. **Coral as text** is permitted only at large sizes (18px+ regular, 14px+ bold) — headings, pull quotes, highlighted words. Never for body text.
+2. **Vermillion as text** is permitted only at large sizes (18px+ regular, 14px+ bold) — headings, pull quotes, highlighted words. Never for body text.
 3. **Ink Lighter** (`#8A847D`) is for metadata, timestamps, and labels at 14px+ bold or 18px+ only.
-4. **Sage** is a background/decorative color. Cream text on Sage fails AA — use Ink on Sage, or use Sage only as a section background with Ink text overlaid.
-5. **Coral on Cream** works for interactive elements (links, buttons) at large sizes with additional affordance (underlines, hover states, button shapes).
+4. **Oxblood and Forest** work as dark section backgrounds with Cream text — both pass AA at all sizes.
+5. **Vermillion on Cream** works for interactive elements (links, buttons) at large sizes with additional affordance (underlines, hover states, button shapes).
 6. **Cream on Ink** is the primary dark-on-light inversion — use for dark sections, footer, hero.
 
-### Primary Accent — Coral
+### Primary Accent — Vermillion
 
-**Why Coral:** Warm, architectural (fired earth, clay, kiln-fired ceramics), bold enough to anchor the brand against cream. It carries physical-world materiality without being literal. Following the Asimov "one color" philosophy, Coral defines Parallax.
+**Why Vermillion:** Drawn from the ranunculus flowers and Japanese temple vermillion in Julianna's photographs. Warmer and bolder than the previous Coral — it carries fired-earth materiality (kilns, ceramics, temple lacquer) with enough saturation to anchor the brand against cream. Following the Asimov "one color" philosophy, Vermillion defines Parallax.
 
 ---
 
