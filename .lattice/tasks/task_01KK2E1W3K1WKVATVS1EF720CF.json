@@ -10,9 +10,9 @@
   "done_at": null,
   "evidence_refs": [],
   "id": "task_01KK2E1W3K1WKVATVS1EF720CF",
-  "last_event_id": "ev_01KK2E1W3SZVAZGMQBWW6XJD3D",
+  "last_event_id": "ev_01KK2J957ZQBV0V7MZR88AC4TJ",
   "last_status_changed_at": "2026-03-06T20:40:01Z",
-  "priority": "high",
+  "priority": "critical",
   "relationships_out": [],
   "reopened_count": 0,
   "schema_version": 1,
@@ -21,6 +21,6 @@
   "tags": null,
   "title": "Add hero image: software + architecture combined (riso pipeline)",
   "type": "task",
-  "updated_at": "2026-03-06T20:40:01Z",
+  "updated_at": "2026-03-06T21:53:54Z",
   "urgency": null
 }

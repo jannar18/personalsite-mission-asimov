@@ -10,9 +10,9 @@
   "done_at": null,
   "evidence_refs": [],
   "id": "task_01KK2E1T6JKVMW979N3XZZR59M",
-  "last_event_id": "ev_01KK2E1T6Q6FG2XGQ96JAVA0TA",
+  "last_event_id": "ev_01KK2J94FJ54MX9AK74MPNQTAA",
   "last_status_changed_at": "2026-03-06T20:39:59Z",
-  "priority": "high",
+  "priority": "critical",
   "relationships_out": [],
   "reopened_count": 0,
   "schema_version": 1,
@@ -21,6 +21,6 @@
   "tags": null,
   "title": "Add architecture split view image (riso pipeline)",
   "type": "task",
-  "updated_at": "2026-03-06T20:39:59Z",
+  "updated_at": "2026-03-06T21:53:54Z",
   "urgency": null
 }
