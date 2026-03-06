@@ -173,6 +173,18 @@ WCAG AA requires 4.5:1 for normal text, 3.0:1 for large text (18px+ or 14px+ bol
 6. **Scarlet on Paper** works for interactive elements (links, buttons) at large sizes with additional affordance (underlines, hover states, button shapes). Scarlet hover state darkens to `#d4434a`.
 7. **Paper on Oxblood** is the primary dark-on-light inversion — use for dark sections, footer, hero.
 
+### Tonal Range & Color Mixing
+
+The four Riso inks (Olive, Moss, Spruce, Scarlet) each produce a full tonal ramp from 10% to 100% density on the cream Paper ground. At low densities, every ink reads as a tinted cream; at full density, it reads as its true color. This gives the palette far more range than the six named colors suggest — any ink at 30-40% produces usable midtones for backgrounds, cards, and subtle accents.
+
+**Reference:** `research/moodboard/riso-palette/riso-tonal-ramp-10-100.png`
+
+When Riso inks overlap (as they do in actual Risograph printing), the translucent layers mix to produce **emergent neutrals** — warm browns, muted olive-greys, dusty roses, and deep near-blacks that don't exist in the base palette. These mixed tones are where the palette's richness lives. The color mixing grid shows every pairwise combination across density levels, revealing earthy neutrals (Olive × Moss), warm darks (Scarlet × Spruce), and dusty midtones (Scarlet × Olive) that can be used for backgrounds, illustrations, and data visualization.
+
+**Reference:** `research/moodboard/riso-palette/riso-color-mixing-neutrals.png`
+
+These references should inform any future color decisions — particularly for illustrations, generative graphics, hover states, and section backgrounds. The available palette is much richer than the six named tokens; the mixing behavior is the palette's secret depth.
+
 ### Primary Accent — Scarlet
 
 **Why Scarlet:** The brightest ink in the Riso drawer. At `#f65058` it has the assertive warmth of Risograph fluorescent red — vivid enough to anchor the brand against cream, soft enough not to feel digital. Following the Asimov "one color" philosophy, Scarlet defines Parallax. Every other color in the palette is muted or dark; Scarlet is where the energy lives.
