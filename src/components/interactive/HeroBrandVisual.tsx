@@ -186,7 +186,7 @@ export default function HeroBrandVisual() {
               fontWeight: 300,
               letterSpacing: "1.8px",
               lineHeight: 1.8,
-              color: "rgba(71,31,32,0.22)",
+              color: "rgba(var(--color-ink-rgb),0.22)",
             }}
           >
             {metadataLeft}
@@ -202,7 +202,7 @@ export default function HeroBrandVisual() {
               fontWeight: 300,
               letterSpacing: "1.8px",
               lineHeight: 1.8,
-              color: "rgba(71,31,32,0.22)",
+              color: "rgba(var(--color-ink-rgb),0.22)",
             }}
           >
             {metadataRight}
@@ -216,7 +216,7 @@ export default function HeroBrandVisual() {
                 fontSize: "7.5px",
                 fontWeight: 300,
                 letterSpacing: "3px",
-                color: "rgba(71,31,32,0.1)",
+                color: "rgba(var(--color-ink-rgb),0.1)",
               }}
             >
               scroll to merge worlds
@@ -230,7 +230,7 @@ export default function HeroBrandVisual() {
               fontSize: "7.5px",
               fontWeight: 300,
               letterSpacing: "3.5px",
-              color: "rgba(71,31,32,0.16)",
+              color: "rgba(var(--color-ink-rgb),0.16)",
             }}
           >
             {metadataBottom.map((item, i) =>
@@ -238,7 +238,7 @@ export default function HeroBrandVisual() {
                 <span
                   key={i}
                   className="inline-block w-[3px] h-[3px] rounded-full"
-                  style={{ background: "rgba(71,31,32,0.13)" }}
+                  style={{ background: "rgba(var(--color-ink-rgb),0.13)" }}
                 />
               ) : (
                 <span key={i}>{item.value}</span>

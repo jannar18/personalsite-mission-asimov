@@ -66,7 +66,7 @@ export const HOLD_DURATION = 300; // ~5s per photo at 60fps
 export const FADE_SPEED = 0.006;
 export const PHOTO_COUNT = 12;
 export const BG_COLOR = "#FDFCEA"; // --color-background (Riso Paper)
-const INK_RGB = "71,31,32"; // --color-ink (Riso Oxblood #471f20)
+const INK_RGB = "71,31,32"; // Must match --color-ink-rgb in tokens.css (Riso Oxblood #471f20)
 
 // ── State Factory ──
 
