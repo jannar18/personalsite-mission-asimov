@@ -36,7 +36,7 @@ Rather than a typical hamburger or bottom nav, the mobile pattern will be a **fu
    - Fixed fullscreen div, `z-40` (below header's `z-50`)
    - Background: `bg-background` (paper cream)
    - Slide-down animation: `translate-y` from `-100%` to `0`
-   - Content: vertical stack of all nav links (Architecture, Writing, Software, Now, About) in large serif italic
+   - Content: vertical stack of all nav links (Architecture, Writing, Software, Now) in large serif italic
    - Each link closes the menu on click
    - Parallax wordmark at bottom
 

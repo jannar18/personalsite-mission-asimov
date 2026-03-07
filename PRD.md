@@ -82,7 +82,7 @@ A personal website at the quality level of an [Asimov Collective](https://www.as
 | Page | Purpose | Content |
 |------|---------|---------|
 | **Home** | First impression, identity statement | Name/brand, one-line positioning. Surfaces a live preview of the Now page (today's studio desk), plus highlighted portfolio pieces from both architecture and software work. The homepage is a window into everything, not a static landing page. |
-| **About** | Who Julianna is | Bio, photo, background spanning architecture + software + AI, contact/social links |
+| **About** | Who Julianna is | Bio, photo, background spanning architecture + software + AI, contact/social links. *Note: accessible via footer link and direct URL (`/about`), intentionally excluded from header nav — the axis nav uses 4 balanced links: Architecture, Now, Writing, Software.* |
 | **Work: Architecture** | Architecture portfolio | Academic/studio projects — renderings, drawings, models, thesis work. Presented in a way that honors the medium (not just an image grid) |
 | **Work: Software & AI** | Software/AI portfolio | Projects, tools, research. Code as creative practice, not just a resume |
 | **Writing** | Blog posts and essays | Migrated from existing site + new writing. Not positioned as a "blog" — more like a collection of thinking |
@@ -90,12 +90,12 @@ A personal website at the quality level of an [Asimov Collective](https://www.as
 
 ### Navigation
 
-Restrained. Likely a fixed minimal header or a side element. The Asimov pattern is a small, quiet nav that doesn't compete with content.
+Restrained. The header uses an "axis nav" pattern — a centered cross/axis button that expands to reveal 4 balanced links: Architecture, Now, Writing, Software. The About page is intentionally excluded from the header nav (accessible via footer and direct URL). The Asimov pattern is a small, quiet nav that doesn't compete with content.
 
 ### Core Flows
 
 1. **New visitor** → lands on Home → understands identity → explores Work or Now
-2. **Employer** → lands on Home or About → reviews Work (both portfolios) → sees breadth + quality
+2. **Employer** → lands on Home (or About via footer/direct link) → reviews Work (both portfolios) → sees breadth + quality
 3. **Peer/collaborator** → checks Now page → sees current threads → reaches out
 4. **Return visitor** → goes straight to Now → sees what's new today
 
