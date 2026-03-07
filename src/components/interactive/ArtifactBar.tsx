@@ -65,7 +65,11 @@ export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
           className="flex h-full items-center gap-[2vw] overflow-x-auto px-[3vw] scrollbar-hide"
           style={{ scrollSnapType: "x proximity" }}
         >
-          {artifacts.map((artifact, i) => (
+          {artifacts.map((artifact, i) => {
+            const h = artifact.image.includes("wireframe")
+              ? "55vh"
+              : heights[i % heights.length];
+            return (
             <div
               key={artifact.slug}
               className="relative flex-shrink-0"
@@ -85,7 +89,7 @@ export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
                     loop
                     playsInline
                     className="rounded-sm object-contain"
-                    style={{ height: heights[i % heights.length], width: "auto" }}
+                    style={{ height: h, width: "auto" }}
                   />
                 ) : (
                   <Image
@@ -94,13 +98,14 @@ export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
                     width={600}
                     height={800}
                     className="rounded-sm object-contain"
-                    style={{ height: heights[i % heights.length], width: "auto" }}
+                    style={{ height: h, width: "auto" }}
                     unoptimized
                   />
                 )}
               </button>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
