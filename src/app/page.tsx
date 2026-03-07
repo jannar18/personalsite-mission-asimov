@@ -131,7 +131,7 @@ export default function HomePage() {
 
         {/* Links — shared 1/3 zone (bottom of slide 7 = top of slide 8) */}
         <ScrollLine origin="center" />
-        <div className="h-[26vh] flex items-center justify-center">
+        <div className="h-[30vh] flex items-center justify-center">
           <nav className="flex gap-[4vw]">
             <Link
               href="/work/architecture"

@@ -60,7 +60,7 @@ export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
 
   return (
     <>
-      <div className="relative z-10 h-[60vh] mb-[14vh] pt-[5vh] pb-[5vh] bg-ink/[0.02]">
+      <div className="relative z-10 h-[56vh] mb-[14vh] pt-[5vh] pb-[5vh] bg-ink/[0.02]">
         <div
           className="flex h-full items-center gap-[2vw] overflow-x-auto px-[3vw] scrollbar-hide"
           style={{ scrollSnapType: "x proximity" }}
