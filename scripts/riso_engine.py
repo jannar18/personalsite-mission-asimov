@@ -65,15 +65,16 @@ def build_density_masks(gray: Image.Image) -> dict:
     arr = np.array(gray, dtype=np.float64)
 
     # Highlight mask: high luminance areas
-    highlight = 1.0 / (1.0 + np.exp(-(arr - 170) / 20))
+    # Increased width for softer transition (breathability)
+    highlight = 1.0 / (1.0 + np.exp(-(arr - 180) / 30))
 
     # Midtone mask: bell curve centered at ~127
-    mid_low = 1.0 / (1.0 + np.exp(-(arr - 85) / 15))
-    mid_high = 1.0 / (1.0 + np.exp(-(arr - 170) / 15))
+    mid_low = 1.0 / (1.0 + np.exp(-(arr - 85) / 25))
+    mid_high = 1.0 / (1.0 + np.exp(-(arr - 180) / 25))
     midtone = mid_low * (1.0 - mid_high)
 
     # Shadow mask: low luminance areas
-    shadow = 1.0 - 1.0 / (1.0 + np.exp(-(arr - 85) / 20))
+    shadow = 1.0 - 1.0 / (1.0 + np.exp(-(arr - 85) / 30))
 
     def to_img(m):
         return Image.fromarray((m * 255).astype(np.uint8), mode="L")
@@ -171,10 +172,12 @@ def process_image(
         ink_rgb = Image.new("RGB", (w, h), color)
         paper_rgb = Image.new("RGB", (w, h), (255, 255, 255))
 
-        # Multiply: where mask is black (ink present), apply color
-        # Invert mask so ink appears in dark areas of the dithered output
-        inv_mask = ImageOps.invert(mask)
-        ink_layer = Image.composite(ink_rgb, paper_rgb, inv_mask)
+        # Multiply: where mask is white (ink present), apply color.
+        # Mask is dithered (0 or 255).
+        # composite(image1, image2, mask):
+        #   if mask=255 (White) -> uses image1 (ink)
+        #   if mask=0   (Black) -> uses image2 (paper)
+        ink_layer = Image.composite(ink_rgb, paper_rgb, mask)
 
         # Apply offset for registration misalignment
         if layer_offset != (0, 0):

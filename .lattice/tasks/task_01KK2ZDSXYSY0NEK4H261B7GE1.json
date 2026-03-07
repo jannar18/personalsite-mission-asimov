@@ -1,0 +1,32 @@
+{
+  "assigned_to": null,
+  "branch_links": [],
+  "comment_count": 1,
+  "complexity": null,
+  "created_at": "2026-03-07T01:43:38Z",
+  "created_by": "human:jules",
+  "custom_fields": {},
+  "description": null,
+  "done_at": "2026-03-07T02:11:11Z",
+  "evidence_refs": [
+    {
+      "id": "ev_01KK310390ED1ZQ3X06XP197X2",
+      "role": "review",
+      "source_type": "comment"
+    }
+  ],
+  "id": "task_01KK2ZDSXYSY0NEK4H261B7GE1",
+  "last_event_id": "ev_01KK31085YQ89K1P31ZAMFEF7Y",
+  "last_status_changed_at": "2026-03-07T02:11:11Z",
+  "priority": "high",
+  "relationships_out": [],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-58",
+  "status": "done",
+  "tags": null,
+  "title": "Parallax wordmark click should navigate to homepage",
+  "type": "task",
+  "updated_at": "2026-03-07T02:11:11Z",
+  "urgency": null
+}

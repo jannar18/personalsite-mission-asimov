@@ -1,0 +1,32 @@
+{
+  "assigned_to": null,
+  "branch_links": [],
+  "comment_count": 1,
+  "complexity": null,
+  "created_at": "2026-03-07T01:43:37Z",
+  "created_by": "human:jules",
+  "custom_fields": {},
+  "description": null,
+  "done_at": "2026-03-07T02:11:10Z",
+  "evidence_refs": [
+    {
+      "id": "ev_01KK30ZXCAGC9FW6GJNYQ1GHWJ",
+      "role": "review",
+      "source_type": "comment"
+    }
+  ],
+  "id": "task_01KK2ZDRHM98ZKAXKJ1X1SFS3N",
+  "last_event_id": "ev_01KK31073A6WZEV6N09EJ88JQ0",
+  "last_status_changed_at": "2026-03-07T02:11:10Z",
+  "priority": "critical",
+  "relationships_out": [],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-54",
+  "status": "done",
+  "tags": null,
+  "title": "Fix grid wrapper pointer-events-none breaking hover-to-open nav on desktop",
+  "type": "task",
+  "updated_at": "2026-03-07T02:11:10Z",
+  "urgency": null
+}

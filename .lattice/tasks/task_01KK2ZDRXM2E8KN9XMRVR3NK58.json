@@ -1,0 +1,32 @@
+{
+  "assigned_to": null,
+  "branch_links": [],
+  "comment_count": 1,
+  "complexity": null,
+  "created_at": "2026-03-07T01:43:37Z",
+  "created_by": "human:jules",
+  "custom_fields": {},
+  "description": null,
+  "done_at": "2026-03-07T02:11:11Z",
+  "evidence_refs": [
+    {
+      "id": "ev_01KK3100JX0XK08AJDSFRN9QN6",
+      "role": "review",
+      "source_type": "comment"
+    }
+  ],
+  "id": "task_01KK2ZDRXM2E8KN9XMRVR3NK58",
+  "last_event_id": "ev_01KK3107S3Z7N2EJBN3TZN9X6K",
+  "last_status_changed_at": "2026-03-07T02:11:11Z",
+  "priority": "critical",
+  "relationships_out": [],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-55",
+  "status": "done",
+  "tags": null,
+  "title": "Fix invisible nav links still clickable when closed (opacity-0 but interactive)",
+  "type": "task",
+  "updated_at": "2026-03-07T02:11:11Z",
+  "urgency": null
+}
