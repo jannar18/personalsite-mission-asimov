@@ -68,6 +68,7 @@
   --color-spruce:          #4a635d;  /* Spruce — shadow accent */
 
   /* ── Color: Neutrals (derived from oxblood) ── */
+  --color-ink-rgb:         71, 31, 32;  /* RGB components of --color-ink, for rgba() usage */
   --color-ink:             #471f20;  /* Primary text */
   --color-ink-light:       #6d4344;  /* Secondary text (~20% lighter) */
   --color-ink-lighter:     #946768;  /* Tertiary text (~40% lighter) */
