@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 
 /**
  * Shared metadata configuration.
- * Site title, description, and OG defaults for Parallax (parallax.studio).
+ * Site title, description, and OG defaults for Parallax (parallax.haus).
  */
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://parallax.studio";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://parallax.haus";
 
 export const siteMetadata: Metadata = {
   title: {

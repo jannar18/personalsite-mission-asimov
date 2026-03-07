@@ -39,14 +39,24 @@ export default function NowPage() {
                 {entry.image && (
                   <div className="mt-4">
                     <div className="artifact-treatment rounded-sm">
-                      <Image
-                        src={entry.image}
-                        alt={entry.description || `Artifact from ${entry.date}`}
-                        width={640}
-                        height={640}
-                        className="max-w-md h-auto rounded-sm"
-                        unoptimized
-                      />
+                      {/\.(mov|mp4|webm)$/i.test(entry.image) ? (
+                        <video
+                          src={entry.image}
+                          controls
+                          playsInline
+                          muted
+                          className="max-w-md w-full h-auto rounded-sm"
+                        />
+                      ) : (
+                        <Image
+                          src={entry.image}
+                          alt={entry.description || `Artifact from ${entry.date}`}
+                          width={640}
+                          height={640}
+                          className="max-w-md h-auto rounded-sm"
+                          unoptimized
+                        />
+                      )}
                     </div>
                     {entry.description && (
                       <p className="mt-2 text-xs text-ink-lighter">
