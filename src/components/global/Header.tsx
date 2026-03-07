@@ -151,18 +151,19 @@ export default function Header() {
           <span className="font-serif font-semibold italic">ax</span>
         </Link>
 
-        {/* Centered axis nav */}
+        {/* Centered axis nav — grid layout keeps cross pinned to center column */}
         <div
-          className="relative mx-auto flex items-center py-5 pointer-events-auto"
+          className="absolute inset-x-0 top-0 grid items-center py-5 pointer-events-none"
+          style={{ gridTemplateColumns: "1fr auto 1fr" }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {/* Left links — expand outward (desktop only) */}
+          {/* Left links — expand outward from center (desktop only) */}
           <nav
-            className={`hidden md:flex items-center gap-[2vw] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            className={`hidden md:flex items-center justify-end gap-[2vw] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] pointer-events-auto ${
               navOpen
-                ? "max-w-[40vw] opacity-100 mr-[2vw]"
-                : "max-w-0 opacity-0 mr-0"
+                ? "opacity-100"
+                : "opacity-0"
             }`}
           >
             {leftLinks.map((link) => (
@@ -179,11 +180,13 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+          {/* Empty cell on mobile when left nav is hidden */}
+          <div className="md:hidden" />
 
-          {/* Center cross — always visible, tapered, crossbar at 1/3 from top */}
+          {/* Center cross — always visible, pinned to center grid column */}
           <button
             onClick={handleCrossClick}
-            className="group relative flex items-center justify-center w-10 h-10 cursor-pointer bg-transparent border-none transition-colors duration-500 text-ink/50 hover:text-ink/70 md:text-ink/25 md:hover:text-ink/40"
+            className="group relative flex items-center justify-center justify-self-center w-10 h-10 cursor-pointer bg-transparent border-none transition-colors duration-500 text-ink/50 hover:text-ink/70 md:text-ink/25 md:hover:text-ink/40 pointer-events-auto"
             aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={mobileMenuOpen || navOpen}
           >
@@ -205,12 +208,12 @@ export default function Header() {
             </svg>
           </button>
 
-          {/* Right links — expand outward (desktop only) */}
+          {/* Right links — expand outward from center (desktop only) */}
           <nav
-            className={`hidden md:flex items-center gap-[2vw] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+            className={`hidden md:flex items-center justify-start gap-[2vw] overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] pointer-events-auto ${
               navOpen
-                ? "max-w-[40vw] opacity-100 ml-[2vw]"
-                : "max-w-0 opacity-0 ml-0"
+                ? "opacity-100"
+                : "opacity-0"
             }`}
           >
             {rightLinks.map((link) => (
@@ -227,6 +230,8 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+          {/* Empty cell on mobile when right nav is hidden */}
+          <div className="md:hidden" />
         </div>
       </header>
 
