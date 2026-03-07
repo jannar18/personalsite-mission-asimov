@@ -1,0 +1,2 @@
+{"actor":"human:jules","data":{"priority":"critical","short_id":"ASMV-53","status":"backlog","title":"Fix ArtifactBar hover \u2014 remove opaque popup overlay on hover","type":"task"},"id":"ev_01KK2X3DWKCX4BCQ3HZNA1MGRR","schema_version":1,"task_id":"task_01KK2X3DWE1VYHBNNDXRGK94RQ","ts":"2026-03-07T01:03:01Z","type":"task_created"}
+{"actor":"agent:claude-opus-4","data":{"from":"backlog","to":"in_planning"},"id":"ev_01KK2XE3W1HNCYYQBVKE0JC150","schema_version":1,"task_id":"task_01KK2X3DWE1VYHBNNDXRGK94RQ","ts":"2026-03-07T01:08:51Z","type":"status_changed"}

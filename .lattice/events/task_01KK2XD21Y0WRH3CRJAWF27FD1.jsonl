@@ -1,0 +1,2 @@
+{"actor":"human:jules","data":{"priority":"critical","short_id":"ASMV-55","status":"backlog","title":"Fix header button shifting position on scroll","type":"task"},"id":"ev_01KK2XD23D5NF3224D52N709TX","schema_version":1,"task_id":"task_01KK2XD21Y0WRH3CRJAWF27FD1","ts":"2026-03-07T01:08:17Z","type":"task_created"}
+{"actor":"agent:claude-opus-4","data":{"from":"backlog","to":"in_planning"},"id":"ev_01KK2XE4MYZ2J5X83NSXANXJCZ","schema_version":1,"task_id":"task_01KK2XD21Y0WRH3CRJAWF27FD1","ts":"2026-03-07T01:08:52Z","type":"status_changed"}

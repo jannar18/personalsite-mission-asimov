@@ -101,6 +101,26 @@
   display: none;
 }
 
+/* ── Studio Desk Surface ──
+   Subtle desk-surface atmosphere: a warm radial gradient that pools
+   toward the bottom, evoking light falling on a desk.  Layer grain-texture
+   on the same element for paper materiality (::before = grain, ::after = gradient). */
+.studio-desk-surface {
+  position: relative;
+}
+.studio-desk-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 80%,
+    var(--color-surface) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .grain-overlay::before,
 .grain-texture::before {
   content: "";
@@ -109,4 +129,12 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 300px 300px;
+  pointer-events: none;
+}
+
+/* grain-texture: subtle grain applied locally (not a fixed overlay) */
+.grain-texture::before {
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  z-index: 1;
 }

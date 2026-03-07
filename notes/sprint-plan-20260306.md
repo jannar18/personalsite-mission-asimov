@@ -14,7 +14,13 @@
 
 **Human (parallel):** Gather source photos for ASMV-28/29/30 and portfolio files for ASMV-23.
 
-## Wave 2 — After Wave 1
+## Wave 1.5 — Review blockers (agent)
+1. **ASMV-53** (critical) — Remove ArtifactBar opaque hover popup
+2. **ASMV-54** (critical) — Fix grid wrapper `pointer-events-none` breaking hover nav
+3. **ASMV-55** (critical) — Fix invisible nav links still clickable when closed
+4. **ASMV-58** (high) — Parallax wordmark → homepage navigation (may be fixed by ASMV-54)
+
+## Wave 2 — After Wave 1.5
 1. **ASMV-26** — Practice `/update-site` pipeline (**human + agent**)
 2. **ASMV-48** (high) — Hero canvas mobile perf (agent)
 3. **ASMV-46** (medium) — Legacy alias cleanup (agent)
@@ -22,6 +28,8 @@
 5. **ASMV-27** (medium) — Homepage split view animations (agent)
 6. **ASMV-41** (medium) — Studio desk refinement (agent)
 7. **ASMV-49** (low) — Footer grain refactor (agent)
+8. **ASMV-56** (medium) — Squash hero revert commits (agent)
+9. **ASMV-57** (medium) — Replace hardcoded rgba values with CSS tokens (agent)
 
 ## Wave 3 — Content buildout (human + agent, via `/update-site`)
 
