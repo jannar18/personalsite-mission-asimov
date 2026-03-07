@@ -7,11 +7,11 @@
   "created_by": "human:jules",
   "custom_fields": {},
   "description": "Create the architecture split view image for the homepage using the riso processing pipeline. This image fills one of the visual placeholder sections (Section 2 or 3). Process through riso engine for brand-consistent treatment.",
-  "done_at": null,
+  "done_at": "2026-03-07T06:46:21Z",
   "evidence_refs": [],
   "id": "task_01KK2E1T6JKVMW979N3XZZR59M",
-  "last_event_id": "ev_01KK2KBPKH3BVD78VDFQCKG5WV",
-  "last_status_changed_at": "2026-03-06T22:12:46Z",
+  "last_event_id": "ev_01KK3GR2SA3NFXACPGPT4XR7Y9",
+  "last_status_changed_at": "2026-03-07T06:46:21Z",
   "priority": "critical",
   "relationships_out": [
     {
@@ -22,13 +22,13 @@
       "type": "depends_on"
     }
   ],
-  "reopened_count": 0,
+  "reopened_count": 1,
   "schema_version": 1,
   "short_id": "ASMV-28",
-  "status": "needs_human",
+  "status": "done",
   "tags": null,
   "title": "Add architecture split view image (riso pipeline)",
   "type": "task",
-  "updated_at": "2026-03-06T22:12:46Z",
+  "updated_at": "2026-03-07T06:46:21Z",
   "urgency": null
 }

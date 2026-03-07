@@ -7,11 +7,11 @@
   "created_by": "human:jules",
   "custom_fields": {},
   "description": "Create the software split view image for the homepage using the riso processing pipeline. This image fills the other visual placeholder section. Process through riso engine for brand-consistent treatment.",
-  "done_at": null,
+  "done_at": "2026-03-07T06:46:21Z",
   "evidence_refs": [],
   "id": "task_01KK2E1V6YC15TFPQX3AHN069E",
-  "last_event_id": "ev_01KK2KBQ6X1HP79MX0R0T5B363",
-  "last_status_changed_at": "2026-03-06T22:12:47Z",
+  "last_event_id": "ev_01KK3GR34N4PYNX77031PCCJAM",
+  "last_status_changed_at": "2026-03-07T06:46:21Z",
   "priority": "critical",
   "relationships_out": [
     {
@@ -22,13 +22,13 @@
       "type": "depends_on"
     }
   ],
-  "reopened_count": 0,
+  "reopened_count": 1,
   "schema_version": 1,
   "short_id": "ASMV-29",
-  "status": "needs_human",
+  "status": "done",
   "tags": null,
   "title": "Add software split view image (riso pipeline)",
   "type": "task",
-  "updated_at": "2026-03-06T22:12:47Z",
+  "updated_at": "2026-03-07T06:46:21Z",
   "urgency": null
 }

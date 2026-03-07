@@ -7,11 +7,11 @@
   "created_by": "human:jules",
   "custom_fields": {},
   "description": "Review the full update skill (notes/update-skill-steps.md) and the artifact generation pipeline (research/asset-workflows/). Assess what works, what's missing, what needs refinement before the skill is built (ASMV-18).",
-  "done_at": null,
+  "done_at": "2026-03-07T06:46:25Z",
   "evidence_refs": [],
   "id": "task_01KK2E1M9QK21BVSTGQ8MP9AWC",
-  "last_event_id": "ev_01KK2JV325GVN9ZRHF2A4ZBNSS",
-  "last_status_changed_at": "2026-03-06T20:39:53Z",
+  "last_event_id": "ev_01KK3GR6Y0ECS9N821NZ0BYF9S",
+  "last_status_changed_at": "2026-03-07T06:46:25Z",
   "priority": "high",
   "relationships_out": [
     {
@@ -25,10 +25,10 @@
   "reopened_count": 0,
   "schema_version": 1,
   "short_id": "ASMV-25",
-  "status": "backlog",
+  "status": "done",
   "tags": null,
   "title": "Review /update skill & artifact generation pipeline",
   "type": "task",
-  "updated_at": "2026-03-06T22:03:42Z",
+  "updated_at": "2026-03-07T06:46:25Z",
   "urgency": null
 }
