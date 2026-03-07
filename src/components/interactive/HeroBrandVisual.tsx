@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import {
   createInitialState,
+  detectPerfTier,
   generateWireNetwork,
   drawFrame,
   getMetadataLeft,
@@ -45,9 +46,26 @@ export default function HeroBrandVisual() {
     if (!canvas || !container) return;
 
     const s = stateRef.current;
-    s.W = canvas.width = container.clientWidth;
-    s.H = canvas.height = container.clientHeight;
-    s.wireNetwork = generateWireNetwork();
+    s.perfTier = detectPerfTier();
+
+    // DPR: retina on desktop (capped at 2x), 1x on mobile for performance
+    const dpr = s.perfTier === "low" ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+    s.dpr = dpr;
+
+    const cssW = container.clientWidth;
+    const cssH = container.clientHeight;
+
+    // Set canvas backing store to DPR-scaled size
+    canvas.width = cssW * dpr;
+    canvas.height = cssH * dpr;
+    canvas.style.width = `${cssW}px`;
+    canvas.style.height = `${cssH}px`;
+
+    // State dimensions remain in CSS pixels (drawing code uses these)
+    s.W = cssW;
+    s.H = cssH;
+
+    s.wireNetwork = generateWireNetwork(s.perfTier);
   }, []);
 
   // ── Scroll-Driven Rotation ──
@@ -90,6 +108,7 @@ export default function HeroBrandVisual() {
   // ── Animation Loop ──
   useEffect(() => {
     handleResize();
+    let skipFrame = false;
 
     const loop = () => {
       if (!isVisibleRef.current) {
@@ -97,12 +116,26 @@ export default function HeroBrandVisual() {
         return;
       }
 
+      const s = stateRef.current;
+
+      // Throttle to ~30fps on mobile: skip every other frame
+      if (s.perfTier === "low") {
+        skipFrame = !skipFrame;
+        if (skipFrame) {
+          rafRef.current = requestAnimationFrame(loop);
+          return;
+        }
+      }
+
       const canvas = canvasRef.current;
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      const s = stateRef.current;
+      // Scale context for DPR — drawing code uses CSS pixel coordinates
+      const dpr = s.dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       drawFrame(ctx, s, photosRef.current);
 
       if (s.frame % 30 === 0) {
@@ -147,7 +180,8 @@ export default function HeroBrandVisual() {
     };
 
     const handleDblClick = () => {
-      stateRef.current.wireNetwork = generateWireNetwork();
+      const s = stateRef.current;
+      s.wireNetwork = generateWireNetwork(s.perfTier);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
