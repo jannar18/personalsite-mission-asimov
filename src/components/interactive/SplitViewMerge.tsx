@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 /**
@@ -76,22 +77,36 @@ export default function SplitViewMerge() {
             className="absolute inset-0 flex items-center bg-paper px-[5vw] py-[5vh]"
           >
             <div>
+              <p
+                className="font-mono uppercase tracking-wider text-ink-light"
+                style={{ fontSize: "clamp(0.625rem, 0.8vw, 0.75rem)" }}
+              >
+                World 01
+              </p>
               <h2
-                className="text-ink"
-                style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
+                className="mt-[1.5vh] font-serif font-semibold italic text-ink"
+                style={{ fontSize: "clamp(1.75rem, 3vw, 3rem)" }}
               >
                 Architectural Design
               </h2>
               <p
-                className="mt-[2vh] max-w-text text-ink-light leading-relaxed"
+                className="mt-[2vh] max-w-text text-ink-light leading-relaxed font-sans"
                 style={{ fontSize: "clamp(0.875rem, 1.2vw, 1.125rem)" }}
               >
-                One year ago I was finishing a 5 year accredited architecture
-                program at Illinois Tech. I was on track to follow the traditional
-                path towards becoming a Licensed Architect through NCARB, but as I
-                was nearing graduation I looked at the rapidly changing world
-                around me, I looked at my field which seemed stuck in time...
+                ...But one year ago I was finishing a 5 year accredited
+                architecture program at Illinois Tech. I was on track to follow
+                the traditional path towards becoming a Licensed Architect
+                through NCARB, but as I was nearing graduation I looked at the
+                rapidly changing world around me, I looked at my field which
+                seemed stuck in time...and I realized I wanted to respond to it.
               </p>
+              <Link
+                href="/work/architecture"
+                className="mt-[3vh] inline-flex items-center gap-2 font-mono uppercase tracking-wide text-ink transition-colors hover:text-scarlet"
+                style={{ fontSize: "clamp(0.625rem, 0.8vw, 0.75rem)" }}
+              >
+                View Architecture Work <span>&rarr;</span>
+              </Link>
             </div>
           </div>
 

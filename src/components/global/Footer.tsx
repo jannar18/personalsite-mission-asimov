@@ -1,98 +1,84 @@
+import Image from "next/image";
 import Link from "next/link";
+import FooterCanvas from "@/components/interactive/FooterCanvas";
 
 /**
  * Footer — Full viewport slide.
  *
  * Its own h-screen section with textured/grainy dark background,
  * PARALLAX wordmark, contact/quote placeholders, and page links.
+ * Background layers: brick wall photo + wire network canvas, both
+ * very subtle behind the content.
  */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="relative flex h-screen flex-col justify-between bg-ink overflow-hidden">
+      {/* Background: brick wall photo */}
+      <Image
+        src="/images/hero/photo-01.jpg"
+        alt=""
+        fill
+        className="object-cover opacity-[0.1] mix-blend-screen pointer-events-none"
+        unoptimized
+      />
+
+      {/* Background: static wire network canvas */}
+      <FooterCanvas />
+
       {/* Grain texture overlay — localized to footer (uses shared .grain-texture class) */}
       <div className="grain-texture absolute inset-0 pointer-events-none opacity-[0.08] mix-blend-soft-light" />
 
       <div className="relative flex flex-1 flex-col justify-between px-[5vw] py-[6vh] font-sans">
-        {/* Top: quote + contact */}
-        <div className="grid grid-cols-1 gap-[4vw] md:grid-cols-2">
-          <div>
-            <p
-              className="text-paper/60 italic font-serif leading-relaxed max-w-text"
-              style={{ fontSize: "clamp(0.875rem, 1.2vw, 1.125rem)" }}
-            >
-              &ldquo;Quote placeholder — a line that captures the ethos of the
-              practice.&rdquo;
-            </p>
-          </div>
-          <div className="md:text-right">
-            <p
-              className="text-paper/40 uppercase"
-              style={{
-                fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
-                letterSpacing: "var(--tracking-wider)",
-              }}
-            >
-              Contact
-            </p>
-            <p
-              className="mt-[1vh] text-paper/60"
-              style={{ fontSize: "clamp(0.8rem, 1vw, 0.95rem)" }}
-            >
-              hello@parallax.studio
-            </p>
-          </div>
-        </div>
-
-        {/* Middle: navigation links */}
-        <nav className="flex flex-wrap gap-[3vw]">
+        {/* Navigation links — pushed down below the window */}
+        <nav className="flex flex-wrap gap-[3vw] mt-auto mb-auto pt-[38vh] pl-[1.5vw]">
           <Link
             href="/"
-            className="text-paper/40 transition-colors hover:text-paper/80"
+            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
-              fontSize: "clamp(0.8rem, 1vw, 0.95rem)",
-              letterSpacing: "var(--tracking-wide)",
+              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
+              letterSpacing: "var(--tracking-wider)",
             }}
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-paper/40 transition-colors hover:text-paper/80"
+            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
-              fontSize: "clamp(0.8rem, 1vw, 0.95rem)",
-              letterSpacing: "var(--tracking-wide)",
+              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
+              letterSpacing: "var(--tracking-wider)",
             }}
           >
             About
           </Link>
           <Link
             href="/work"
-            className="text-paper/40 transition-colors hover:text-paper/80"
+            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
-              fontSize: "clamp(0.8rem, 1vw, 0.95rem)",
-              letterSpacing: "var(--tracking-wide)",
+              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
+              letterSpacing: "var(--tracking-wider)",
             }}
           >
             Work
           </Link>
           <Link
             href="/writing"
-            className="text-paper/40 transition-colors hover:text-paper/80"
+            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
-              fontSize: "clamp(0.8rem, 1vw, 0.95rem)",
-              letterSpacing: "var(--tracking-wide)",
+              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
+              letterSpacing: "var(--tracking-wider)",
             }}
           >
             Writing
           </Link>
           <Link
             href="/now"
-            className="text-paper/40 transition-colors hover:text-paper/80"
+            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
-              fontSize: "clamp(0.8rem, 1vw, 0.95rem)",
-              letterSpacing: "var(--tracking-wide)",
+              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
+              letterSpacing: "var(--tracking-wider)",
             }}
           >
             Now
@@ -100,7 +86,7 @@ export default function Footer() {
         </nav>
 
         {/* Bottom: wordmark + year */}
-        <div className="flex flex-col gap-[2vh] sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex items-center justify-between">
           <p
             className="text-paper/20 tracking-tighter"
             style={{
@@ -113,7 +99,7 @@ export default function Footer() {
             <span className="font-serif font-semibold italic">ax</span>
           </p>
           <p
-            className="text-paper/30"
+            className="text-paper/30 translate-y-[1em]"
             style={{
               fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
               letterSpacing: "var(--tracking-wide)",

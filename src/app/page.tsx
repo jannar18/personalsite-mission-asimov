@@ -5,6 +5,7 @@ import HeroBrandVisual from "@/components/interactive/HeroBrandVisual";
 import ArtifactBar from "@/components/interactive/ArtifactBar";
 import SplitViewMerge from "@/components/interactive/SplitViewMerge";
 import MergeVideo from "@/components/interactive/MergeVideo";
+import ScrollLine from "@/components/ui/ScrollLine";
 /**
  * Home page — viewport-fitted sections ("slides").
  *
@@ -30,24 +31,41 @@ export default function HomePage() {
       {/* ─── Section 1: Hero ─── */}
       <HeroBrandVisual />
 
+      {/* ─── Spacer: Hero → Section 2 ─── */}
+      <div className="h-[25vh] bg-paper flex items-end">
+        <ScrollLine origin="right" />
+      </div>
+
       {/* ─── Section 2: Split A — text left, software right ─── */}
       <section className="grid h-screen grid-cols-1 md:grid-cols-2">
         <div className="flex items-center bg-paper px-[5vw] py-[5vh]">
           <div>
+            <p
+              className="font-mono uppercase tracking-wider text-ink-light"
+              style={{ fontSize: "clamp(0.625rem, 0.8vw, 0.75rem)" }}
+            >
+              World 02
+            </p>
             <h2
-              className="text-ink"
-              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.5rem)" }}
+              className="mt-[1.5vh] font-serif font-semibold italic text-ink whitespace-nowrap"
+              style={{ fontSize: "clamp(1.75rem, 3vw, 3rem)" }}
             >
               Software Engineering + AI Research
             </h2>
             <p
-              className="mt-[2vh] max-w-text text-ink-light leading-relaxed"
+              className="mt-[2vh] max-w-text text-ink-light leading-relaxed font-sans"
               style={{ fontSize: "clamp(0.875rem, 1.2vw, 1.125rem)" }}
             >
-              ...and I realized I wanted to respond to it. Now I&#39;m taking
-              the time to look into the future and predict the skills I will
-              need to be successful in the future version of my field.
+              I spend 10 hours a day 6/7 days a week working with Claude Code,
+              building software and strengthening my harness.
             </p>
+            <Link
+              href="/work/software"
+              className="mt-[3vh] inline-flex items-center gap-2 font-mono uppercase tracking-wide text-ink transition-colors hover:text-scarlet"
+              style={{ fontSize: "clamp(0.625rem, 0.8vw, 0.75rem)" }}
+            >
+              View Software Work <span>&rarr;</span>
+            </Link>
           </div>
         </div>
         <div className="relative overflow-hidden">
@@ -61,8 +79,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Line: Section 2 → Section 3 ─── */}
+      <div className="bg-paper">
+        <ScrollLine origin="left" />
+      </div>
+
       {/* ─── Section 3 + Merge: Split B → software visual slides in ─── */}
       <SplitViewMerge />
+
+      {/* ─── Spacer: SplitViewMerge → Video ─── */}
+      <div className="h-[25vh] bg-paper flex items-end">
+        <ScrollLine origin="center" />
+      </div>
 
       {/* ─── Section 5: Merged — architecture + software as one ─── */}
       <section className="relative h-screen overflow-hidden bg-ink">
@@ -78,14 +106,22 @@ export default function HomePage() {
           Total: ~166vh. The links naturally belong to both views as you scroll. */}
       <section className="bg-background">
         {/* Separator line at viewport boundary */}
-        <div className="w-full border-t border-border" />
+        <ScrollLine origin="center" />
 
         {/* Body text — upper 2/3 of virtual slide 7 */}
         <div className="flex h-[66.67vh] items-center justify-center px-[5vw]">
-          <div className="max-w-text text-center">
+          <div className="max-w-[60vw] text-center">
             <p
-              className="text-ink-light leading-relaxed"
-              style={{ fontSize: "clamp(1rem, 1.3vw, 1.25rem)" }}
+              className="font-serif font-bold italic text-ink leading-snug"
+              style={{ fontSize: "clamp(1.75rem, 3.5vw, 3.75rem)" }}
+            >
+              Now I&rsquo;m taking the time to look into the future and predict
+              the skills I will need to be successful in the future version of
+              my field.
+            </p>
+            <p
+              className="font-mono text-ink-light uppercase tracking-wide mt-[3vh]"
+              style={{ fontSize: "clamp(0.75rem, 1vw, 0.875rem)" }}
             >
               This site collects my ongoing work, experiments, research notes
               and observations.
@@ -94,14 +130,15 @@ export default function HomePage() {
         </div>
 
         {/* Links — shared 1/3 zone (bottom of slide 7 = top of slide 8) */}
-        <div className="h-[33.33vh] flex items-center justify-center border-t border-border">
+        <ScrollLine origin="center" />
+        <div className="h-[33.33vh] flex items-center justify-center">
           <nav className="flex gap-[4vw]">
             <Link
               href="/work/architecture"
-              className="group flex items-center gap-2 font-sans text-ink transition-colors hover:text-scarlet"
+              className="group flex items-center gap-2 font-mono uppercase text-ink transition-colors hover:text-scarlet"
               style={{
-                fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
-                letterSpacing: "var(--tracking-wide)",
+                fontSize: "clamp(0.75rem, 1vw, 0.95rem)",
+                letterSpacing: "var(--tracking-wider)",
               }}
             >
               Architecture
@@ -111,10 +148,10 @@ export default function HomePage() {
             </Link>
             <Link
               href="/work/software"
-              className="group flex items-center gap-2 font-sans text-ink transition-colors hover:text-scarlet"
+              className="group flex items-center gap-2 font-mono uppercase text-ink transition-colors hover:text-scarlet"
               style={{
-                fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
-                letterSpacing: "var(--tracking-wide)",
+                fontSize: "clamp(0.75rem, 1vw, 0.95rem)",
+                letterSpacing: "var(--tracking-wider)",
               }}
             >
               Software
@@ -124,10 +161,10 @@ export default function HomePage() {
             </Link>
             <Link
               href="/writing"
-              className="group flex items-center gap-2 font-sans text-ink transition-colors hover:text-scarlet"
+              className="group flex items-center gap-2 font-mono uppercase text-ink transition-colors hover:text-scarlet"
               style={{
-                fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
-                letterSpacing: "var(--tracking-wide)",
+                fontSize: "clamp(0.75rem, 1vw, 0.95rem)",
+                letterSpacing: "var(--tracking-wider)",
               }}
             >
               Writing
