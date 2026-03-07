@@ -531,6 +531,8 @@ export function getMetadataBottom(s: HeroState): MetadataBottomItem[] {
     { type: "sep" as const },
     { type: "text" as const, value: "architecture \u2194 computation" },
     { type: "sep" as const },
+    { type: "text" as const, value: "Sigurd Lewerentz, St Mark Chapel" },
+    { type: "sep" as const },
     { type: "text" as const, value: `${now.getFullYear()}` },
   ];
 }

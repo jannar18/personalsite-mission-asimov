@@ -47,14 +47,14 @@ export default function HomePage() {
               World 02
             </p>
             <h2
-              className="mt-[1.5vh] font-serif font-bold italic text-ink whitespace-nowrap"
-              style={{ fontSize: "clamp(1.9rem, 3.2vw, 3.25rem)" }}
+              className="mt-[1.5vh] font-serif font-bold italic text-ink md:whitespace-nowrap"
+              style={{ fontSize: "clamp(1.35rem, 3.2vw, 3.25rem)" }}
             >
               Software Engineering + AI Research
             </h2>
             <p
               className="mt-[2vh] max-w-text text-ink-light leading-relaxed font-sans"
-              style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.2rem)" }}
+              style={{ fontSize: "clamp(0.875rem, 1.3vw, 1.2rem)" }}
             >
               I spend 10 hours a day 6/7 days a week working with Claude Code,
               building software and strengthening my harness.
@@ -110,10 +110,10 @@ export default function HomePage() {
 
         {/* Body text — upper 2/3 of virtual slide 7 */}
         <div className="flex h-[66.67vh] items-center justify-center px-[5vw]">
-          <div className="max-w-[80vw] md:max-w-[50vw] text-center">
+          <div className="max-w-[85vw] md:max-w-[58vw] text-center">
             <p
               className="font-serif font-bold italic text-ink leading-snug"
-              style={{ fontSize: "clamp(1.75rem, 3.5vw, 3.75rem)" }}
+              style={{ fontSize: "clamp(1.35rem, 3.5vw, 3.75rem)" }}
             >
               I&rsquo;m taking the time to look into the future and predict
               the skills I will need to be successful in the future version of
@@ -176,7 +176,15 @@ export default function HomePage() {
         </div>
 
         {/* Studio desk — artifact bar (lower 2/3 of virtual slide 8) */}
-        <ArtifactBar artifacts={artifacts} />
+        <div className="relative">
+          <p
+            className="absolute top-[2vh] left-[5vw] font-mono uppercase tracking-wider text-ink-light pointer-events-none z-10"
+            style={{ fontSize: "clamp(0.7rem, 0.9vw, 0.825rem)" }}
+          >
+            the studio desk
+          </p>
+          <ArtifactBar artifacts={artifacts} />
+        </div>
       </section>
     </div>
   );

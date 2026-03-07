@@ -85,13 +85,13 @@ export default function SplitViewMerge() {
               </p>
               <h2
                 className="mt-[1.5vh] font-serif font-bold italic text-ink"
-                style={{ fontSize: "clamp(1.9rem, 3.2vw, 3.25rem)" }}
+                style={{ fontSize: "clamp(1.35rem, 3.2vw, 3.25rem)" }}
               >
                 Architectural Design
               </h2>
               <p
                 className="mt-[2vh] max-w-text text-ink-light leading-relaxed font-sans"
-                style={{ fontSize: "clamp(0.95rem, 1.3vw, 1.2rem)" }}
+                style={{ fontSize: "clamp(0.875rem, 1.3vw, 1.2rem)" }}
               >
                 ...But one year ago I was finishing a 5 year accredited
                 architecture program at Illinois Tech. I was on track to follow

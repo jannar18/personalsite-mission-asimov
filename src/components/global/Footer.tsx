@@ -32,36 +32,26 @@ export default function Footer() {
 
       <div className="relative flex flex-1 flex-col justify-between px-[5vw] py-[6vh] font-sans">
         {/* Navigation links — pushed down below the window */}
-        <nav className="flex flex-wrap gap-[3vw] mt-auto mb-auto pt-[38vh] pl-[1.5vw]">
+        <nav className="flex flex-wrap gap-[3vw] mt-auto mb-auto pt-[38vh] pl-0">
           <Link
-            href="/"
+            href="/work/architecture"
             className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
               fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
               letterSpacing: "var(--tracking-wider)",
             }}
           >
-            Home
+            Architecture
           </Link>
           <Link
-            href="/about"
+            href="/now"
             className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
               fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
               letterSpacing: "var(--tracking-wider)",
             }}
           >
-            About
-          </Link>
-          <Link
-            href="/work"
-            className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
-            style={{
-              fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
-              letterSpacing: "var(--tracking-wider)",
-            }}
-          >
-            Work
+            Daily Archive
           </Link>
           <Link
             href="/writing"
@@ -74,14 +64,14 @@ export default function Footer() {
             Writing
           </Link>
           <Link
-            href="/now"
+            href="/work/software"
             className="font-mono uppercase text-paper/40 transition-colors hover:text-paper/80"
             style={{
               fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)",
               letterSpacing: "var(--tracking-wider)",
             }}
           >
-            Now
+            Software
           </Link>
         </nav>
 

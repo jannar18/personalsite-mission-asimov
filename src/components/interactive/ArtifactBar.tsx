@@ -30,7 +30,7 @@ function isVideo(src: string) {
 export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const heights = ["45vh", "30vh", "38vh", "50vh", "28vh", "42vh"];
+  const heights = ["50vh", "36vh", "44vh", "55vh", "34vh", "48vh"];
 
   const closePopover = useCallback(() => setActiveIndex(null), []);
 
@@ -60,9 +60,9 @@ export default function ArtifactBar({ artifacts }: ArtifactBarProps) {
 
   return (
     <>
-      <div className="relative z-10 h-[66.67vh] pt-[2vh] pb-[11vh]">
+      <div className="relative z-10 h-[58vh] mb-[8.67vh] pt-[5vh] pb-[5vh] bg-ink/[0.02]">
         <div
-          className="flex h-full items-end gap-[2vw] overflow-x-auto px-[3vw] scrollbar-hide"
+          className="flex h-full items-center gap-[2vw] overflow-x-auto px-[3vw] scrollbar-hide"
           style={{ scrollSnapType: "x proximity" }}
         >
           {artifacts.map((artifact, i) => (
