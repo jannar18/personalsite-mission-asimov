@@ -43,7 +43,7 @@ The codebase is functionally sound — lint passes, types check, all 13 pages ge
 
 - **ArtifactBar hover state is broken** — `text-vermillion hover:text-vermillion-light` both resolve to `#f65058`. No visual feedback on hover. (Claude Critical)
 - **Mobile navigation is unreachable after hero** — Nav opens on hover only; touch devices can't hover. Cross button at 25% opacity doesn't afford tappability. (Claude Critical)
-- **About page missing from header nav** — Listed as primary page in PRD but only linked from footer. (Claude Critical)
+- ~~**About page missing from header nav**~~ — **Resolved (ASMV-50):** About's exclusion from header nav is an intentional design decision (axis nav uses 4 balanced links). About remains accessible via footer and direct URL. (Claude Critical — superseded)
 - **Hero canvas performance on mobile** — 80 slices × 2 during crossfade = 160 drawImage calls/frame plus wireframe rendering. No quality degradation for mobile. (Claude Critical)
 - **AGENTS.md references `research/pinterest-board/` which doesn't exist** — (Codex Critical)
 - **Intermittent build failure** — Some agents saw `pages-manifest.json` ENOENT on first build. Clean builds pass. Likely stale `.next/` artifacts. (All Codex agents)
@@ -69,7 +69,7 @@ The codebase is functionally sound — lint passes, types check, all 13 pages ge
 | I1 | HeroBrandVisual.tsx hardcodes old ink rgba | `HeroBrandVisual.tsx:189,205,219,233,241` | All 4 |
 | I2 | ArtifactBar hover state is a no-op | `ArtifactBar.tsx:168`, `tailwind.config.ts:21` | Claude Critical |
 | I3 | Mobile nav unreachable after hero (hover-only) | `Header.tsx:60-72` | Claude Critical |
-| I4 | About page missing from header nav | `Header.tsx:18-27` | Claude Critical |
+| ~~I4~~ | ~~About page missing from header nav~~ — **Resolved (ASMV-50):** intentional design decision | `Header.tsx:18-27` | Claude Critical |
 | I5 | AGENTS.md is a drifting near-duplicate of CLAUDE.md | Both files | All 4 |
 | I6 | CLAUDE.md + AGENTS.md design language refs use old palette | `CLAUDE.md:103`, `AGENTS.md:105` | All 4 |
 | I7 | ASMV-20 and ASMV-21 Lattice status stuck at `review` | `.lattice/` | All 4 |
@@ -101,7 +101,7 @@ The codebase is functionally sound — lint passes, types check, all 13 pages ge
 - [ ] Update HeroBrandVisual.tsx hardcoded rgba values (I1) — found by: all 4, type: both
 - [ ] Fix ArtifactBar hover state (I2) — found by: Claude Critical, type: critical
 - [ ] Add mobile navigation pattern (I3) — found by: Claude Critical, type: critical
-- [ ] Add About to header nav (I4) — found by: Claude Critical, type: critical
+- [x] ~~Add About to header nav (I4)~~ — **Resolved (ASMV-50):** About's exclusion from header nav is intentional (axis nav design). Docs updated to clarify.
 - [ ] Resolve AGENTS.md/CLAUDE.md duplication (I5) — found by: all 4, type: both
 - [ ] Update design language refs to Riso palette (I6) — found by: all 4, type: both
 - [ ] Move ASMV-20 + ASMV-21 to done (I7) — found by: all 4, type: both
@@ -310,7 +310,7 @@ The code quality is solid. The architecture is good. But the documentation layer
 
 1. **No test suite.** Zero tests. No Vitest, no Playwright, no Jest. The CLAUDE.md acknowledges this ("Testing: Not yet configured") but for a site targeting Asimov-quality, there's no automated way to verify anything works.
 
-2. **No About link in the header nav.** The About page exists (`/about`), but Header.tsx only links to Architecture, Now, Writing, Software. About is only reachable from the Footer. PRD §6 lists About as a primary page.
+2. ~~**No About link in the header nav.**~~ **Resolved (ASMV-50):** About's exclusion from header nav is an intentional design decision -- the axis nav uses 4 balanced links (Architecture, Now, Writing, Software). About remains accessible via footer and direct URL. PRD updated to clarify.
 
 3. **No mobile navigation fallback.** After the hero, nav requires hover. No hamburger menu, no bottom nav, no swipe gesture. On mobile, you scroll to the footer or use the browser back button.
 
@@ -392,13 +392,11 @@ The code quality is solid. The architecture is good. But the documentation layer
 - **Impact:** Mobile users can't navigate after scrolling past the hero.
 - **Fix:** Add touch/click support to open nav, or add a mobile navigation pattern.
 
-**I4. About page missing from header navigation**
+~~**I4. About page missing from header navigation**~~ **-- Resolved (ASMV-50)**
 - File: `src/components/global/Header.tsx:18-27`
-- Header links: Architecture, Now, Writing, Software — no About
+- Header links: Architecture, Now, Writing, Software -- no About
 - About page exists and is linked from Footer only
-- PRD §6 lists About as a primary page ("Who Julianna is")
-- **Impact:** Key page unreachable from primary navigation.
-- **Fix:** Add About to either leftLinks or rightLinks in Header.tsx.
+- **Resolution:** About's exclusion from header nav is an intentional design decision. The axis nav uses 4 balanced links. About is accessible via footer and direct URL (`/about`). PRD and docs updated to clarify this is by design, not an oversight.
 
 **I5. AGENTS.md is a drifting 345-line near-duplicate of CLAUDE.md**
 - Both files describe the same project to agents

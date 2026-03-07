@@ -35,7 +35,7 @@ The code quality is solid. The architecture is good. But the documentation layer
 
 1. **No test suite.** Zero tests. No Vitest, no Playwright, no Jest. The CLAUDE.md acknowledges this ("Testing: Not yet configured") but for a site targeting Asimov-quality, there's no automated way to verify anything works.
 
-2. **No About link in the header nav.** The About page exists (`/about`), but Header.tsx only links to Architecture, Now, Writing, Software. About is only reachable from the Footer. PRD §6 lists About as a primary page.
+2. ~~**No About link in the header nav.**~~ **Resolved (ASMV-50):** About's exclusion from header nav is an intentional design decision -- the axis nav uses 4 balanced links (Architecture, Now, Writing, Software). About remains accessible via footer and direct URL. PRD updated to clarify.
 
 3. **No mobile navigation fallback.** After the hero, nav requires hover. No hamburger menu, no bottom nav, no swipe gesture. On mobile, you scroll to the footer or use the browser back button.
 
@@ -117,13 +117,11 @@ The code quality is solid. The architecture is good. But the documentation layer
 - **Impact:** Mobile users can't navigate after scrolling past the hero.
 - **Fix:** Add touch/click support to open nav, or add a mobile navigation pattern.
 
-**I4. About page missing from header navigation**
+~~**I4. About page missing from header navigation**~~ **-- Resolved (ASMV-50)**
 - File: `src/components/global/Header.tsx:18-27`
-- Header links: Architecture, Now, Writing, Software — no About
+- Header links: Architecture, Now, Writing, Software -- no About
 - About page exists and is linked from Footer only
-- PRD §6 lists About as a primary page ("Who Julianna is")
-- **Impact:** Key page unreachable from primary navigation.
-- **Fix:** Add About to either leftLinks or rightLinks in Header.tsx.
+- **Resolution:** About's exclusion from header nav is an intentional design decision. The axis nav uses 4 balanced links. About is accessible via footer and direct URL (`/about`). PRD and docs updated to clarify this is by design, not an oversight.
 
 **I5. AGENTS.md is a drifting 345-line near-duplicate of CLAUDE.md**
 - Both files describe the same project to agents
@@ -214,7 +212,7 @@ The code quality is solid. The architecture is good. But the documentation layer
 
 **I3. Mobile nav unreachable** — ✅ Confirmed. Header.tsx:65: `handleMouseEnter` triggers `setNavOpen(true)` only on `mouseenter`, which doesn't fire on touch. The `onClick` on the cross button (line 126-128) does work for touch, but the button is visually near-invisible at 25% opacity with no label or affordance. ⬇️ Downgrading slightly — the cross IS technically tappable, but the UX is poor. It's discoverable only if you already know it's there.
 
-**I4. About missing from header** — ✅ Confirmed. Header.tsx:18-27 defines exactly four links. No "About" appears.
+**I4. About missing from header** -- Confirmed but **Resolved (ASMV-50):** intentional design decision. The 4-link axis nav is by design. About accessible via footer/direct URL.
 
 **I5. AGENTS.md duplication** — ✅ Confirmed. Side-by-side comparison shows ~70% overlap with CLAUDE.md. The contradictions on typography are verified (B1).
 
@@ -242,8 +240,8 @@ No. Not because of the code quality — the TypeScript is clean, the architectur
 4. Either delete AGENTS.md or fix the typography roles and bring it in sync (B1, I5)
 5. Rewrite brand-guide.md §3 and §7 for the Riso palette (B2)
 6. Add mobile-friendly navigation (I3)
-7. Add About to the header nav (I4)
+7. ~~Add About to the header nav (I4)~~ -- **Resolved (ASMV-50):** intentional design decision, docs updated
 
 The documentation fixes (1-2 hours of work) prevent the next agent from building broken pages. The code fixes (1-2 hours) prevent visitors from seeing the wrong colors and broken interactions. The mobile nav (half a day) prevents 50%+ of visitors from being stranded.
 
-Everything else is polish. These seven items are the minimum bar.
+Items 1-6 remain the minimum bar. Item 7 was resolved as an intentional design decision (About excluded from header nav by design, accessible via footer).
