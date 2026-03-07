@@ -43,6 +43,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [brandRevealed, setBrandRevealed] = useState(false);
   const inHeroRef = useRef(true);
+  const lastScrollYRef = useRef(0);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /** Check if viewport is mobile-width (below md breakpoint). */
@@ -55,6 +56,9 @@ export default function Header() {
       const scrollY = window.scrollY;
       const vh = window.innerHeight;
       const heroEnd = vh * 1; // 200vh section minus 100vh viewport
+      const lastY = lastScrollYRef.current;
+      const delta = scrollY - lastY;
+      lastScrollYRef.current = scrollY;
 
       // Reveal wordmark once scrolling starts — never hides again
       if (scrollY > 30) setBrandRevealed(true);
@@ -65,7 +69,14 @@ export default function Header() {
         if (!isMobile()) setNavOpen(true);
       } else if (scrollY >= heroEnd) {
         inHeroRef.current = false;
-        if (!isMobile()) setNavOpen(false);
+        if (!isMobile()) {
+          // Expand on scroll-up, collapse on scroll-down (5px threshold)
+          if (delta < -5) {
+            setNavOpen(true);
+          } else if (delta > 5) {
+            setNavOpen(false);
+          }
+        }
       } else {
         inHeroRef.current = true;
         if (!isMobile()) setNavOpen(false);
@@ -140,7 +151,7 @@ export default function Header() {
               : "opacity-0"
           }`}
           style={{
-            fontSize: "clamp(1.4rem, 2vw, 1.8rem)",
+            fontSize: "clamp(1.6rem, 2.4vw, 2.1rem)",
             letterSpacing: "var(--tracking-wide)",
           }}
           tabIndex={brandRevealed ? 0 : -1}
