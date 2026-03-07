@@ -10,6 +10,8 @@
 
 // ── Types ──
 
+export type PerfTier = "high" | "low";
+
 export interface Point {
   x: number;
   y: number;
@@ -58,7 +60,18 @@ export interface HeroState {
   nextPhoto: number;
   crossfade: number;
   photoHoldTimer: number;
+  perfTier: PerfTier;
+  dpr: number;
 }
+
+// ── Performance Tier Constants ──
+
+const PERF_SLICES_HIGH = 80;
+const PERF_SLICES_LOW = 24;
+const PERF_WIRE_NODES_HIGH = 90;
+const PERF_WIRE_NODES_LOW = 40;
+const PERF_LONG_EDGES_HIGH = 14;
+const PERF_LONG_EDGES_LOW = 6;
 
 // ── Constants ──
 
@@ -69,6 +82,14 @@ export const BG_COLOR = "#FDFCEA"; // --color-background (Riso Paper)
 const INK_RGB = "71,31,32"; // --color-ink (Riso Oxblood #471f20)
 
 // ── State Factory ──
+
+export function detectPerfTier(): PerfTier {
+  if (typeof window === "undefined") return "high";
+  const w = window.innerWidth;
+  const isTouch = navigator.maxTouchPoints > 0;
+  if (w < 768 || (w < 1024 && isTouch)) return "low";
+  return "high";
+}
 
 export function createInitialState(): HeroState {
   return {
@@ -89,13 +110,18 @@ export function createInitialState(): HeroState {
     nextPhoto: 1,
     crossfade: 0,
     photoHoldTimer: 0,
+    perfTier: "high",
+    dpr: 1,
   };
 }
 
 // ── Wire Network Generation ──
 
-export function generateWireNetwork(): WireNetwork {
-  const nodeCount = 90;
+export function generateWireNetwork(tier: PerfTier = "high"): WireNetwork {
+  const nodeCount =
+    tier === "low" ? PERF_WIRE_NODES_LOW : PERF_WIRE_NODES_HIGH;
+  const longEdgeCount =
+    tier === "low" ? PERF_LONG_EDGES_LOW : PERF_LONG_EDGES_HIGH;
   const nodes: WireNode[] = [];
 
   for (let i = 0; i < nodeCount; i++) {
@@ -151,7 +177,7 @@ export function generateWireNetwork(): WireNetwork {
   }
 
   // Long-range random edges for visual interest
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < longEdgeCount; i++) {
     const a = Math.floor(Math.random() * nodeCount);
     let b = Math.floor(Math.random() * nodeCount);
     while (b === a) b = Math.floor(Math.random() * nodeCount);
@@ -244,6 +270,7 @@ export function drawPhotoInQuad(
   pts: Point[],
   alpha: number,
   cropAspect?: number,
+  sliceCount?: number,
 ) {
   if (!img || !img.complete || img.naturalWidth === 0) return;
   ctx.save();
@@ -276,7 +303,7 @@ export function drawPhotoInQuad(
     sy = (img.naturalHeight - sh) / 2;
   }
 
-  const slices = 80;
+  const slices = sliceCount ?? PERF_SLICES_HIGH;
   for (let i = 0; i < slices; i++) {
     const t1 = i / slices;
     const t2 = (i + 1) / slices;
@@ -329,10 +356,13 @@ export function drawLeftPlane(
   // Fade photo opacity as plane rotates open
   const fade = 1 - s.rotation * 0.7;
 
+  const slices =
+    s.perfTier === "low" ? PERF_SLICES_LOW : PERF_SLICES_HIGH;
+
   const ca = 0.82 * (1 - s.crossfade) * fade;
   const na = 0.82 * s.crossfade * fade;
-  if (ca > 0.01) drawPhotoInQuad(ctx, photos[s.currentPhoto], pts, ca, refAspect);
-  if (na > 0.01) drawPhotoInQuad(ctx, photos[s.nextPhoto], pts, na, refAspect);
+  if (ca > 0.01) drawPhotoInQuad(ctx, photos[s.currentPhoto], pts, ca, refAspect, slices);
+  if (na > 0.01) drawPhotoInQuad(ctx, photos[s.nextPhoto], pts, na, refAspect, slices);
   drawPlaneBorder(ctx, pts, 0.12);
 }
 
@@ -343,6 +373,7 @@ export function drawRightPlane(ctx: CanvasRenderingContext2D, s: HeroState) {
   const net = s.wireNetwork;
   if (!net) return;
 
+  const isLow = s.perfTier === "low";
   const px = (s.mouseX - 0.5) * 6;
   const py = (s.mouseY - 0.5) * 4;
   const ts = s.frame / 60;
@@ -377,7 +408,7 @@ export function drawRightPlane(ctx: CanvasRenderingContext2D, s: HeroState) {
     ctx.lineTo(pB.x + px, pB.y + py);
     ctx.stroke();
 
-    // Signal dot
+    // Signal dot — update position always (state), but skip draw on mobile
     edge.signalPos += edge.signalSpeed * edge.signalDir;
     if (edge.signalPos > 1) {
       edge.signalPos = 1;
@@ -386,12 +417,14 @@ export function drawRightPlane(ctx: CanvasRenderingContext2D, s: HeroState) {
       edge.signalPos = 0;
       edge.signalDir = 1;
     }
-    const sigX = pA.x + (pB.x - pA.x) * edge.signalPos + px;
-    const sigY = pA.y + (pB.y - pA.y) * edge.signalPos + py;
-    ctx.fillStyle = `rgba(${INK_RGB},${Math.min(a * 1.2, 0.4) * er})`;
-    ctx.beginPath();
-    ctx.arc(sigX, sigY, 1.3, 0, Math.PI * 2);
-    ctx.fill();
+    if (!isLow) {
+      const sigX = pA.x + (pB.x - pA.x) * edge.signalPos + px;
+      const sigY = pA.y + (pB.y - pA.y) * edge.signalPos + py;
+      ctx.fillStyle = `rgba(${INK_RGB},${Math.min(a * 1.2, 0.4) * er})`;
+      ctx.beginPath();
+      ctx.arc(sigX, sigY, 1.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }
 
   // Draw nodes
@@ -404,8 +437,8 @@ export function drawRightPlane(ctx: CanvasRenderingContext2D, s: HeroState) {
     ctx.arc(p.x + px, p.y + py, 1.5, 0, Math.PI * 2);
     ctx.fill();
 
-    // Cross marker on some nodes
-    if (node.phase > Math.PI) {
+    // Cross marker on some nodes — skip on mobile
+    if (!isLow && node.phase > Math.PI) {
       ctx.strokeStyle = `rgba(${INK_RGB},${a * 0.4})`;
       ctx.lineWidth = 0.3;
       ctx.beginPath();
@@ -478,10 +511,11 @@ export interface MetadataBottomItem {
 
 export function getMetadataBottom(s: HeroState): MetadataBottomItem[] {
   const now = new Date();
+  const fps = s.perfTier === "low" ? "30.0fps" : "60.0fps";
   return [
     { type: "text" as const, value: `${s.W}\u00D7${s.H}` },
     { type: "sep" as const },
-    { type: "text" as const, value: "60.0fps" },
+    { type: "text" as const, value: fps },
     { type: "sep" as const },
     { type: "text" as const, value: "architecture \u2194 computation" },
     { type: "sep" as const },
