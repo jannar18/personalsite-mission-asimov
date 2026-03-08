@@ -165,9 +165,11 @@ export function generateLayout(
   const cols = Math.ceil(Math.sqrt(itemCount * 1.5)); // slightly wider than tall
   const rows = Math.ceil(itemCount / cols);
 
-  // Cell size based on max item size + generous gap
-  const cellWidth = cfg.maxWidth + cfg.minGap + 100;
-  const cellHeight = cfg.maxWidth + cfg.minGap + 100;
+  // Cell size must fit the TALLEST possible item (portrait at 0.65:1 ratio)
+  // plus gap on all sides. This prevents overlaps regardless of aspect ratio.
+  const maxItemHeight = Math.round(cfg.maxWidth / 0.65); // ~585px for 380px width
+  const cellWidth = cfg.maxWidth + cfg.minGap * 2;
+  const cellHeight = maxItemHeight + cfg.minGap * 2;
 
   // Global PRNG for grid-level jitter
   const globalSeed = hashString("canvas-layout-even") + itemCount;
@@ -206,9 +208,11 @@ export function generateLayout(
     const cellCenterX = margin + (col + 0.5) * cellWidth;
     const cellCenterY = margin + (row + 0.5) * cellHeight;
 
-    // Jitter: ±15% of cell size for organic scatter (small enough to stay in cell)
-    const jitterX = (rng() - 0.5) * cellWidth * 0.3;
-    const jitterY = (rng() - 0.5) * cellHeight * 0.3;
+    // Jitter: bounded so the item stays fully within its cell
+    const maxJitterX = (cellWidth - width) / 2 - cfg.minGap / 2;
+    const maxJitterY = (cellHeight - height) / 2 - cfg.minGap / 2;
+    const jitterX = (rng() - 0.5) * 2 * Math.max(0, maxJitterX);
+    const jitterY = (rng() - 0.5) * 2 * Math.max(0, maxJitterY);
 
     const x = cellCenterX + jitterX - width / 2;
     const y = cellCenterY + jitterY - height / 2;
