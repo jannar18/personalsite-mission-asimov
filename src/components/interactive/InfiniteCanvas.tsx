@@ -575,7 +575,6 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                 left: item.x,
                 top: item.y,
                 width: item.width,
-                height: item.height,
                 transform: item.rotation ? `rotate(${item.rotation}deg)` : undefined,
                 zIndex: item.zIndex,
               }}
@@ -585,7 +584,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                 }
               }}
             >
-              <div className="artifact-treatment relative w-full h-full rounded-sm cursor-pointer shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-200 ease-out">
+              <div className="artifact-treatment rounded-sm cursor-pointer shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-200 ease-out">
                 {isVideo(entry.image) ? (
                   <video
                     src={entry.image}
@@ -593,15 +592,17 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                     autoPlay
                     loop
                     playsInline
-                    className="w-full h-full object-contain rounded-sm pointer-events-none"
+                    className="w-full rounded-sm pointer-events-none"
+                    style={{ height: "auto" }}
                   />
                 ) : (
                   <Image
                     src={entry.image}
                     alt={entry.description || `Artifact from ${entry.date}`}
-                    fill
-                    sizes={`${item.width}px`}
-                    className="object-contain rounded-sm pointer-events-none"
+                    width={item.width}
+                    height={item.height}
+                    className="rounded-sm pointer-events-none"
+                    style={{ width: "100%", height: "auto" }}
                     loading="lazy"
                     unoptimized
                   />
