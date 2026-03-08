@@ -34,10 +34,13 @@ const ZOOM_FACTOR_IN = 1.08;
 const ZOOM_FACTOR_OUT = 0.92;
 const DRAG_THRESHOLD = 5;
 const LERP_FACTOR = 0.12;
+const LERP_FACTOR_INSTANT = 1; // for reduced motion
 const CONVERGENCE_EPSILON = 0.01;
 const MOMENTUM_DECAY = 0.95;
 const MOMENTUM_MIN = 0.1;
 const VELOCITY_SAMPLE_COUNT = 5;
+const KEYBOARD_PAN_STEP = 60;
+const EDGE_MARGIN_RATIO = 0.5; // allow panning half a viewport beyond content
 
 /* ── Component ── */
 
@@ -77,13 +80,21 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
   // Mobile detection for hint text
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
+  // Reduced motion preference
+  const prefersReducedMotion = useRef(false);
+
+  // Content bounding box for edge constraints
+  const contentBounds = useRef({ minX: 0, minY: 0, maxX: 2000, maxY: 2000 });
+
   // Layout
   const [layout, setLayout] = useState<CanvasItemLayout[]>([]);
   const [ready, setReady] = useState(false);
 
-  // Detect touch capability
+  // Detect touch capability and reduced motion
   useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+    prefersReducedMotion.current =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
   /* ── rAF animation loop ── */
@@ -96,9 +107,11 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       const c = current.current;
       const t = target.current;
       const v = velocity.current;
+      const lerp = prefersReducedMotion.current ? LERP_FACTOR_INSTANT : LERP_FACTOR;
 
       // Apply momentum to target (decaying each frame)
-      if (v.x !== 0 || v.y !== 0) {
+      // Skip momentum entirely for reduced motion
+      if (!prefersReducedMotion.current && (v.x !== 0 || v.y !== 0)) {
         t.x += v.x;
         t.y += v.y;
         v.x *= MOMENTUM_DECAY;
@@ -109,9 +122,29 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
         }
       }
 
-      c.x += (t.x - c.x) * LERP_FACTOR;
-      c.y += (t.y - c.y) * LERP_FACTOR;
-      c.scale += (t.scale - c.scale) * LERP_FACTOR;
+      // Edge constraints — soft clamp target within content bounds + margin
+      const vw = containerRef.current?.clientWidth ?? window.innerWidth;
+      const vh = containerRef.current?.clientHeight ?? window.innerHeight;
+      const marginX = vw * EDGE_MARGIN_RATIO;
+      const marginY = vh * EDGE_MARGIN_RATIO;
+      const bounds = contentBounds.current;
+
+      const maxTx = marginX;
+      const minTx = vw - (bounds.maxX - bounds.minX) * t.scale - marginX;
+      const maxTy = marginY;
+      const minTy = vh - (bounds.maxY - bounds.minY) * t.scale - marginY;
+
+      if (maxTx > minTx) {
+        // Content fits in viewport — center it
+        t.x = Math.max(minTx, Math.min(maxTx, t.x));
+      }
+      if (maxTy > minTy) {
+        t.y = Math.max(minTy, Math.min(maxTy, t.y));
+      }
+
+      c.x += (t.x - c.x) * lerp;
+      c.y += (t.y - c.y) * lerp;
+      c.scale += (t.scale - c.scale) * lerp;
 
       if (worldRef.current) {
         worldRef.current.style.transform = `translate(${c.x}px, ${c.y}px) scale(${c.scale})`;
@@ -157,6 +190,18 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       entries.map((e) => ({ slug: e.slug, date: e.date, image: e.image }))
     );
     setLayout(items);
+
+    // Store content bounds for edge constraints
+    if (items.length > 0) {
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      for (const item of items) {
+        minX = Math.min(minX, item.x);
+        minY = Math.min(minY, item.y);
+        maxX = Math.max(maxX, item.x + item.width);
+        maxY = Math.max(maxY, item.y + item.height);
+      }
+      contentBounds.current = { minX, minY, maxX, maxY };
+    }
 
     const vw = window.innerWidth;
     const vh = window.innerHeight;
@@ -346,7 +391,8 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       }
 
       // Apply momentum from velocity history (ASMV-62)
-      if (isDragging.current && hasDragged.current) {
+      // Skip for reduced motion preference
+      if (isDragging.current && hasDragged.current && !prefersReducedMotion.current) {
         const history = velocityHistory.current;
         if (history.length >= 2) {
           const now = performance.now();
@@ -413,16 +459,80 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
     return () => container.removeEventListener("wheel", handleWheel);
   }, [startAnimation]);
 
-  /* ── Escape key closes popover (ASMV-64) ── */
+  /* ── Keyboard navigation (ASMV-65) ── */
 
   useEffect(() => {
-    if (!activeEntry) return;
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setActiveEntry(null);
+      // Escape closes popover
+      if (e.key === "Escape" && activeEntry) {
+        setActiveEntry(null);
+        return;
+      }
+
+      // Don't capture keys when popover is open
+      if (activeEntry) return;
+
+      // Arrow keys: pan
+      const panStep = KEYBOARD_PAN_STEP;
+      switch (e.key) {
+        case "ArrowUp":
+          target.current.y += panStep;
+          startAnimation();
+          e.preventDefault();
+          break;
+        case "ArrowDown":
+          target.current.y -= panStep;
+          startAnimation();
+          e.preventDefault();
+          break;
+        case "ArrowLeft":
+          target.current.x += panStep;
+          startAnimation();
+          e.preventDefault();
+          break;
+        case "ArrowRight":
+          target.current.x -= panStep;
+          startAnimation();
+          e.preventDefault();
+          break;
+        case "=":
+        case "+": {
+          // Zoom in toward center
+          const vw = containerRef.current?.clientWidth ?? window.innerWidth;
+          const vh = containerRef.current?.clientHeight ?? window.innerHeight;
+          const t = target.current;
+          const newScale = Math.min(MAX_SCALE, t.scale * ZOOM_FACTOR_IN);
+          const worldX = (vw / 2 - t.x) / t.scale;
+          const worldY = (vh / 2 - t.y) / t.scale;
+          target.current.scale = newScale;
+          target.current.x = vw / 2 - worldX * newScale;
+          target.current.y = vh / 2 - worldY * newScale;
+          startAnimation();
+          e.preventDefault();
+          break;
+        }
+        case "-":
+        case "_": {
+          // Zoom out from center
+          const vw = containerRef.current?.clientWidth ?? window.innerWidth;
+          const vh = containerRef.current?.clientHeight ?? window.innerHeight;
+          const t = target.current;
+          const newScale = Math.max(MIN_SCALE, t.scale * ZOOM_FACTOR_OUT);
+          const worldX = (vw / 2 - t.x) / t.scale;
+          const worldY = (vh / 2 - t.y) / t.scale;
+          target.current.scale = newScale;
+          target.current.x = vw / 2 - worldX * newScale;
+          target.current.y = vh / 2 - worldY * newScale;
+          startAnimation();
+          e.preventDefault();
+          break;
+        }
+      }
     };
+
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [activeEntry]);
+  }, [activeEntry, startAnimation]);
 
   /* ── Render ── */
 
@@ -475,7 +585,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                 }
               }}
             >
-              <div className="artifact-treatment relative w-full h-full rounded-sm cursor-pointer">
+              <div className="artifact-treatment relative w-full h-full rounded-sm cursor-pointer shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-200 ease-out">
                 {isVideo(entry.image) ? (
                   <video
                     src={entry.image}
