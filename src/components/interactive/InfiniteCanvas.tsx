@@ -466,7 +466,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                 top: item.y,
                 width: item.width,
                 height: item.height,
-                transform: `rotate(${item.rotation}deg)`,
+                transform: item.rotation ? `rotate(${item.rotation}deg)` : undefined,
                 zIndex: item.zIndex,
               }}
               onClick={() => {
@@ -483,7 +483,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                     autoPlay
                     loop
                     playsInline
-                    className="w-full h-full object-cover rounded-sm pointer-events-none"
+                    className="w-full h-full object-contain rounded-sm pointer-events-none"
                   />
                 ) : (
                   <Image
@@ -491,7 +491,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                     alt={entry.description || `Artifact from ${entry.date}`}
                     fill
                     sizes={`${item.width}px`}
-                    className="object-cover rounded-sm pointer-events-none"
+                    className="object-contain rounded-sm pointer-events-none"
                     loading="lazy"
                     unoptimized
                   />

@@ -65,8 +65,8 @@ interface LayoutConfig {
 }
 
 const DEFAULT_CONFIG: LayoutConfig = {
-  minGap: 40,
-  maxRotation: 4,
+  minGap: 100,
+  maxRotation: 0,
   minWidth: 200,
   maxWidth: 500,
   relaxationPasses: 30,
