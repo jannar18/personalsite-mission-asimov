@@ -1,0 +1,41 @@
+{
+  "assigned_to": null,
+  "branch_links": [],
+  "comment_count": 0,
+  "complexity": null,
+  "created_at": "2026-03-07T23:06:06Z",
+  "created_by": "agent:claude-opus-4",
+  "custom_fields": {},
+  "description": null,
+  "done_at": null,
+  "evidence_refs": [],
+  "id": "task_01KK58T2HH46SG1KKHVV2S0VW8",
+  "last_event_id": "ev_01KK58TCJ6BNGPF10KQFCG8FVY",
+  "last_status_changed_at": "2026-03-07T23:06:06Z",
+  "priority": "medium",
+  "relationships_out": [
+    {
+      "created_at": "2026-03-07T23:06:16Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK58T1JPPF5DEN9EPHS9X6JE",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-03-07T23:06:17Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK58T227DBHWZ77XJ3B8WDF0",
+      "type": "depends_on"
+    }
+  ],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-65",
+  "status": "backlog",
+  "tags": null,
+  "title": "Infinite canvas: polish \u2014 minimap, reset view, animations, loading",
+  "type": "task",
+  "updated_at": "2026-03-07T23:06:17Z",
+  "urgency": null
+}
