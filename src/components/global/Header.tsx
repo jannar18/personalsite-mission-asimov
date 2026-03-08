@@ -83,6 +83,11 @@ export default function Header() {
       }
     };
 
+    // On non-scrollable pages (e.g. /now canvas), reveal wordmark immediately
+    if (document.body.scrollHeight <= window.innerHeight + 50) {
+      setBrandRevealed(true);
+    }
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);

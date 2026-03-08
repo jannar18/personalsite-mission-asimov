@@ -613,8 +613,8 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
         })}
       </div>
 
-      {/* Title overlay */}
-      <div className="absolute top-6 left-6 z-20 pointer-events-none">
+      {/* Title overlay — pushed below header */}
+      <div className="absolute top-20 left-6 z-20 pointer-events-none">
         <h1
           className="font-serif font-bold italic text-ink"
           style={{ fontSize: "clamp(1.25rem, 2.5vw, 2rem)" }}
