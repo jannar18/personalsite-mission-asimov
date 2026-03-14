@@ -1,78 +1,51 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllNowEntries } from "@/lib/content";
+import { getImageDimensions } from "@/lib/image-utils";
+import StudioDesk from "@/components/interactive/StudioDesk";
+import type { LayoutMode } from "@/components/interactive/LayoutSwitcher";
 
 export const metadata: Metadata = {
   title: "Now",
   description: "What I'm working on, thinking about, and making right now.",
 };
 
+const VALID_LAYOUTS: LayoutMode[] = ["scatter", "masonry", "columns", "bento"];
+
 /**
  * Now / Studio Desk page.
  *
- * Daily entries rendered chronologically (newest first).
- * "Studio desk" metaphor — populated but not messy.
- * Sparse days look as intentional as rich days.
- * No timestamps unless they add meaning — dates only.
+ * Switchable layout prototypes: ?layout=scatter|masonry|columns|bento
+ * Default is scatter (infinite canvas).
  */
-export default function NowPage() {
+export default async function NowPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ layout?: string }>;
+}) {
+  const params = await searchParams;
+  const layoutParam = params.layout ?? "scatter";
+  const layout: LayoutMode = VALID_LAYOUTS.includes(layoutParam as LayoutMode)
+    ? (layoutParam as LayoutMode)
+    : "scatter";
+
   const entries = getAllNowEntries();
 
-  return (
-    <div className="studio-desk-surface grain-texture mx-auto max-w-content px-5">
-      <section className="py-24">
-        <div className="flex flex-col gap-20">
-          {entries.length === 0 ? (
-            <p className="text-ink-light">Nothing here yet.</p>
-          ) : (
-            entries.map((entry) => (
-              <article key={entry.slug} className="max-w-text">
-                <time className="text-sm text-ink-lighter tracking-wide">
-                  {entry.date}
-                </time>
-                {entry.mood && (
-                  <span className="ml-3 text-sm text-ink-light font-serif italic">
-                    {entry.mood}
-                  </span>
-                )}
-                {entry.image && (
-                  <div className="mt-4">
-                    <div className="artifact-treatment rounded-sm">
-                      {/\.(mov|mp4|webm)$/i.test(entry.image) ? (
-                        <video
-                          src={entry.image}
-                          controls
-                          playsInline
-                          muted
-                          className="max-w-md w-full h-auto rounded-sm"
-                        />
-                      ) : (
-                        <Image
-                          src={entry.image}
-                          alt={entry.description || `Artifact from ${entry.date}`}
-                          width={640}
-                          height={640}
-                          className="max-w-md h-auto rounded-sm"
-                          unoptimized
-                        />
-                      )}
-                    </div>
-                    {entry.description && (
-                      <p className="mt-2 text-xs text-ink-lighter">
-                        {entry.description}
-                      </p>
-                    )}
-                  </div>
-                )}
-                <div className="prose mt-4">
-                  <MDXRemote source={entry.content} />
-                </div>
-              </article>
-            ))
-          )}
-        </div>
-      </section>
-    </div>
-  );
+  // Filter to entries with images/videos and compute real dimensions
+  const canvasEntries = entries
+    .filter((entry) => entry.image)
+    .map((entry) => {
+      const dims = getImageDimensions(entry.image!);
+      return {
+        slug: entry.slug,
+        date: entry.date,
+        mood: entry.mood,
+        image: entry.image!,
+        imageWidth: dims.width,
+        imageHeight: dims.height,
+        project: entry.project,
+        description: entry.description,
+      };
+    });
+
+  return <StudioDesk entries={canvasEntries} layout={layout} />;
 }

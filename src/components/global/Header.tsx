@@ -83,6 +83,12 @@ export default function Header() {
       }
     };
 
+    // On non-homepage routes, reveal wordmark immediately
+    // (homepage reveals on scroll via the handler above)
+    if (window.location.pathname !== "/") {
+      setBrandRevealed(true);
+    }
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
@@ -127,7 +133,7 @@ export default function Header() {
   const handleCrossClick = () => {
     if (isMobile()) {
       setMobileMenuOpen((prev) => !prev);
-    } else if (!inHeroRef.current) {
+    } else {
       setNavOpen((prev) => !prev);
     }
   };
