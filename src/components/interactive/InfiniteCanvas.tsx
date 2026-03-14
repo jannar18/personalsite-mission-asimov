@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import {
   generateLayout,
@@ -10,6 +10,7 @@ import {
 import ArtifactPopover, {
   type ArtifactEntry,
 } from "@/components/interactive/ArtifactPopover";
+import { isVideo } from "@/lib/media-utils";
 
 /* ── Types ── */
 
@@ -28,10 +29,6 @@ interface InfiniteCanvasProps {
   entries: CanvasEntry[];
 }
 
-function isVideo(src: string) {
-  return /\.(mov|mp4|webm)$/i.test(src);
-}
-
 /* ── Constants ── */
 const MIN_SCALE = 0.2;
 const MAX_SCALE = 2.5;
@@ -46,6 +43,41 @@ const MOMENTUM_MIN = 0.1;
 const VELOCITY_SAMPLE_COUNT = 5;
 const KEYBOARD_PAN_STEP = 60;
 const EDGE_MARGIN_RATIO = 0.5; // allow panning half a viewport beyond content
+
+/* ── Lazy Video — only plays when near the viewport ── */
+
+function LazyVideo({ src }: { src: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      muted
+      loop
+      playsInline
+      className="w-full h-full object-cover pointer-events-none"
+    />
+  );
+}
 
 /* ── Component ── */
 
@@ -95,11 +127,17 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
   const [layout, setLayout] = useState<CanvasItemLayout[]>([]);
   const [ready, setReady] = useState(false);
 
-  // Detect touch capability and reduced motion
+  // Detect touch capability and watch reduced motion preference
   useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
-    prefersReducedMotion.current =
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    prefersReducedMotion.current = mq.matches;
+    const onChange = (e: MediaQueryListEvent) => {
+      prefersReducedMotion.current = e.matches;
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   /* ── rAF animation loop ── */
@@ -128,23 +166,32 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       }
 
       // Edge constraints — soft clamp target within content bounds + margin
+      // Uses actual content origin (bounds.minX/Y) so the constraint works
+      // regardless of where the layout normalization places items.
       const vw = containerRef.current?.clientWidth ?? window.innerWidth;
       const vh = containerRef.current?.clientHeight ?? window.innerHeight;
       const marginX = vw * EDGE_MARGIN_RATIO;
       const marginY = vh * EDGE_MARGIN_RATIO;
       const bounds = contentBounds.current;
 
-      const maxTx = marginX;
-      const minTx = vw - (bounds.maxX - bounds.minX) * t.scale - marginX;
-      const maxTy = marginY;
-      const minTy = vh - (bounds.maxY - bounds.minY) * t.scale - marginY;
+      // maxT = leftmost camera can go (content's left edge at viewport left + margin)
+      // minT = rightmost camera can go (content's right edge at viewport right - margin)
+      const maxTx = -bounds.minX * t.scale + marginX;
+      const minTx = vw - bounds.maxX * t.scale - marginX;
+      const maxTy = -bounds.minY * t.scale + marginY;
+      const minTy = vh - bounds.maxY * t.scale - marginY;
 
       if (maxTx > minTx) {
-        // Content fits in viewport — center it
+        // Content fits in viewport — clamp within range
         t.x = Math.max(minTx, Math.min(maxTx, t.x));
+      } else {
+        // Content larger than viewport — clamp (swap min/max)
+        t.x = Math.max(maxTx, Math.min(minTx, t.x));
       }
       if (maxTy > minTy) {
         t.y = Math.max(minTy, Math.min(maxTy, t.y));
+      } else {
+        t.y = Math.max(maxTy, Math.min(minTy, t.y));
       }
 
       c.x += (t.x - c.x) * lerp;
@@ -244,22 +291,23 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
 
   /* ── Pinch helpers (ASMV-63) ── */
 
-  const getPinchDistance = useCallback(() => {
+  // These read from stable refs so no memoization needed
+  const getPinchDistance = () => {
     const pts = Array.from(pointers.current.values());
     if (pts.length < 2) return 0;
     const dx = pts[0].x - pts[1].x;
     const dy = pts[0].y - pts[1].y;
     return Math.sqrt(dx * dx + dy * dy);
-  }, []);
+  };
 
-  const getPinchMidpoint = useCallback(() => {
+  const getPinchMidpoint = () => {
     const pts = Array.from(pointers.current.values());
     if (pts.length < 2) return { x: 0, y: 0 };
     return {
       x: (pts[0].x + pts[1].x) / 2,
       y: (pts[0].y + pts[1].y) / 2,
     };
-  }, []);
+  };
 
   /* ── Pointer Events ── */
 
@@ -295,7 +343,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
         containerRef.current.style.cursor = "grabbing";
       }
     },
-    [getPinchDistance, getPinchMidpoint]
+    []
   );
 
   const handlePointerMove = useCallback(
@@ -375,7 +423,7 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       lastPointer.current = { x: e.clientX, y: e.clientY };
       startAnimation();
     },
-    [startAnimation, getPinchDistance, getPinchMidpoint]
+    [startAnimation]
   );
 
   const handlePointerUp = useCallback(
@@ -547,7 +595,10 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
 
   /* ── Render ── */
 
-  const entryMap = new Map(entries.map((e) => [e.slug, e]));
+  const entryMap = useMemo(
+    () => new Map(entries.map((e) => [e.slug, e])),
+    [entries]
+  );
 
   return (
     <div
@@ -582,6 +633,9 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
               key={item.slug}
               className="absolute overflow-hidden"
               data-slug={item.slug}
+              role="button"
+              tabIndex={0}
+              aria-label={entry.description || `Artifact from ${entry.date}`}
               style={{
                 left: item.x,
                 top: item.y,
@@ -595,17 +649,16 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
                   setActiveEntry(entry);
                 }
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActiveEntry(entry);
+                }
+              }}
             >
               <div className="artifact-treatment w-full h-full cursor-pointer hover:scale-[1.02] transition-transform duration-200 ease-out">
                 {isVideo(entry.image) ? (
-                  <video
-                    src={entry.image}
-                    muted
-                    autoPlay
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover pointer-events-none"
-                  />
+                  <LazyVideo src={entry.image} />
                 ) : (
                   <Image
                     src={entry.image}
@@ -662,12 +715,16 @@ export default function InfiniteCanvas({ entries }: InfiniteCanvasProps) {
       {/* Reset view button (ASMV-62) */}
       <button
         onClick={resetView}
-        className="absolute bottom-6 right-6 z-20 pointer-events-auto
+        className="absolute right-6 z-20 pointer-events-auto
           px-3 py-1.5 rounded font-mono text-xs uppercase tracking-wider
           bg-surface/80 backdrop-blur-sm text-ink-light
           ring-1 ring-border hover:bg-surface hover:text-ink
           transition-all duration-200"
-        style={{ fontSize: "0.65rem", letterSpacing: "0.08em" }}
+        style={{
+          fontSize: "0.65rem",
+          letterSpacing: "0.08em",
+          bottom: "max(1.5rem, env(safe-area-inset-bottom, 1.5rem))",
+        }}
       >
         Reset view
       </button>

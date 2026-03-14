@@ -18,8 +18,9 @@ interface LayoutSwitcherProps {
 export default function LayoutSwitcher({ current }: LayoutSwitcherProps) {
   return (
     <nav
-      className="fixed bottom-6 left-6 z-30 flex gap-1 rounded-full
+      className="fixed left-6 z-30 flex gap-1 rounded-full
         bg-surface/80 backdrop-blur-sm ring-1 ring-border p-1"
+      style={{ bottom: "max(1.5rem, env(safe-area-inset-bottom, 1.5rem))" }}
     >
       {LAYOUTS.map(({ mode, label }) => (
         <Link

@@ -54,7 +54,7 @@ export interface LayoutEntry {
 interface LayoutConfig {
   /** Minimum gap between items (px) */
   minGap: number;
-  /** Max rotation in degrees */
+  /** Max rotation in degrees (0 = disabled) */
   maxRotation: number;
   /** Minimum item width (px) */
   minWidth: number;
@@ -72,12 +72,9 @@ const DEFAULT_CONFIG: LayoutConfig = {
   relaxationPasses: 100,
 };
 
-/* ── Helpers ── */
+import { isVideo } from "@/lib/media-utils";
 
-function isVideoPath(path?: string): boolean {
-  if (!path) return false;
-  return /\.(mov|mp4|webm)$/i.test(path);
-}
+/* ── Helpers ── */
 
 /** Determine aspect ratio category from slug hash */
 function getAspectRatio(rng: () => number, isVideo: boolean): number {
@@ -196,7 +193,7 @@ export function generateLayout(
     const rng = mulberry32(slugSeed);
 
     // ── Size ──
-    const video = isVideoPath(entry.image);
+    const video = isVideo(entry.image ?? "");
     const widthBase = cfg.minWidth + rng() * (cfg.maxWidth - cfg.minWidth);
     // Clamp video boost so it doesn't exceed maxWidth
     const width = Math.round(Math.min(video ? widthBase * 1.1 : widthBase, cfg.maxWidth));
@@ -241,7 +238,7 @@ export function generateLayout(
     items.push({ slug: entry.slug, x, y, width, height, rotation, zIndex });
   }
 
-  // ── 6. Collision relaxation ──
+  // ── 4. Collision relaxation ──
   // Iteratively push overlapping items apart
   for (let pass = 0; pass < cfg.relaxationPasses; pass++) {
     let hadOverlap = false;
@@ -268,7 +265,7 @@ export function generateLayout(
     if (!hadOverlap) break;
   }
 
-  // ── 7. Normalize positions ──
+  // ── 5. Normalize positions ──
   // Shift all items so the minimum x,y starts at a reasonable margin
   if (items.length > 0) {
     let minX = Infinity;
@@ -322,9 +319,10 @@ export function getInitialCamera(
   const centerX = minX + contentWidth / 2;
   const centerY = minY + contentHeight / 2;
 
-  // Scale to fit with some padding
-  const scaleX = viewportWidth / (contentWidth + 200);
-  const scaleY = viewportHeight / (contentHeight + 200);
+  // Scale to fit with padding so content doesn't touch edges
+  const FIT_PADDING = 200;
+  const scaleX = viewportWidth / (contentWidth + FIT_PADDING);
+  const scaleY = viewportHeight / (contentHeight + FIT_PADDING);
   const fitScale = Math.min(scaleX, scaleY, 1); // Don't zoom in past 1:1
 
   // Fill the viewport: items should appear large, not as a bird's-eye overview.
