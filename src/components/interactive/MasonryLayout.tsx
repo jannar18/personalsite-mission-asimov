@@ -26,7 +26,8 @@ interface MasonryLayoutProps {
 }
 
 /* ── Layout constants ── */
-const GAP = 16;
+const GAP = 20;
+const ITEM_PADDING = 10;
 
 /* ── Camera constants ── */
 const MIN_SCALE = 0.15;
@@ -63,9 +64,10 @@ function computeMasonryLayout(
   totalWidth: number;
   totalHeight: number;
 } {
-  // Fill ~80% of viewport width with columns
-  const targetWidth = Math.max(600, viewportWidth * 0.8);
-  const colCount = Math.max(2, Math.min(5, Math.round(targetWidth / 320)));
+  // Fill the full viewport width before growing vertically
+  const horizontalMargin = 48; // 24px each side
+  const targetWidth = Math.max(600, viewportWidth - horizontalMargin * 2);
+  const colCount = Math.max(2, Math.min(8, Math.round(targetWidth / 260)));
   const colWidth = Math.floor((targetWidth - (colCount - 1) * GAP) / colCount);
   const layoutWidth = colCount * colWidth + (colCount - 1) * GAP;
 
@@ -81,8 +83,10 @@ function computeMasonryLayout(
 
     const aspect = Math.max(0.3, Math.min(3, entry.imageWidth / entry.imageHeight));
     const width = colWidth;
-    const maxHeight = colWidth * 2; // cap at 2:1 portrait to prevent column domination
-    const height = Math.min(Math.round(width / aspect), maxHeight);
+    const innerWidth = width - ITEM_PADDING * 2;
+    const innerHeight = Math.round(innerWidth / aspect);
+    const maxInnerHeight = innerWidth * 2;
+    const height = Math.min(innerHeight, maxInnerHeight) + ITEM_PADDING * 2;
 
     items.push({
       entry,
@@ -476,10 +480,10 @@ export default function MasonryLayout({ entries }: MasonryLayoutProps) {
           <div
             key={item.entry.slug}
             className="absolute overflow-hidden"
-            style={{ left: item.x, top: item.y, width: item.width, height: item.height }}
+            style={{ left: item.x, top: item.y, width: item.width, height: item.height, padding: ITEM_PADDING }}
             onClick={() => { if (!hasDragged.current) handleItemClick(item.entry); }}
           >
-            <div className="artifact-treatment w-full h-full cursor-pointer hover:scale-[1.02] transition-transform duration-200 ease-out">
+            <div className="artifact-treatment w-full h-full cursor-pointer hover:scale-[1.02] transition-transform duration-200 ease-out rounded-sm">
               {isVideo(item.entry.image) ? (
                 <video
                   src={item.entry.image}
@@ -502,21 +506,21 @@ export default function MasonryLayout({ entries }: MasonryLayoutProps) {
         ))}
       </div>
 
-      {/* Title overlay */}
-      <div className="absolute top-20 left-6 z-20 pointer-events-none">
+      {/* Title — in the header bar, right side */}
+      <div className="fixed top-0 right-[5vw] z-50 pointer-events-none text-right py-5 flex flex-col justify-center h-[60px]">
         <h1
-          className="font-serif font-bold italic text-ink"
-          style={{ fontSize: "clamp(1.25rem, 2.5vw, 2rem)" }}
+          className="font-serif font-bold italic text-ink leading-none"
+          style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.15rem)" }}
         >
           the studio desk
         </h1>
         <p
-          className="font-mono text-ink-lighter uppercase"
-          style={{ fontSize: "clamp(0.55rem, 0.7vw, 0.65rem)", letterSpacing: "0.1em" }}
+          className="font-mono text-ink-lighter uppercase mt-0.5"
+          style={{ fontSize: "clamp(0.5rem, 0.6vw, 0.55rem)", letterSpacing: "0.1em" }}
         >
           {isTouchDevice
-            ? "drag to explore \u00B7 pinch to zoom \u00B7 tap to view"
-            : "drag to explore \u00B7 scroll to zoom \u00B7 click to view"}
+            ? "drag \u00B7 pinch \u00B7 tap"
+            : "drag \u00B7 scroll \u00B7 click"}
         </p>
       </div>
 

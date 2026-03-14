@@ -133,7 +133,7 @@ export default function Header() {
   const handleCrossClick = () => {
     if (isMobile()) {
       setMobileMenuOpen((prev) => !prev);
-    } else if (!inHeroRef.current) {
+    } else {
       setNavOpen((prev) => !prev);
     }
   };
