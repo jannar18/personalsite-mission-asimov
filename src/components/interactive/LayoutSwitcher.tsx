@@ -1,0 +1,40 @@
+"use client";
+
+import Link from "next/link";
+
+export type LayoutMode = "scatter" | "masonry";
+
+const LAYOUTS: { mode: LayoutMode; label: string }[] = [
+  { mode: "scatter", label: "Scatter" },
+  { mode: "masonry", label: "Masonry" },
+];
+
+interface LayoutSwitcherProps {
+  current: LayoutMode;
+}
+
+export default function LayoutSwitcher({ current }: LayoutSwitcherProps) {
+  return (
+    <nav
+      className="fixed left-6 z-30 flex gap-1 rounded-full
+        bg-surface/80 backdrop-blur-sm ring-1 ring-border p-1"
+      style={{ bottom: "max(1.5rem, env(safe-area-inset-bottom, 1.5rem))" }}
+    >
+      {LAYOUTS.map(({ mode, label }) => (
+        <Link
+          key={mode}
+          href={mode === "scatter" ? "/now" : `/now?layout=${mode}`}
+          className={`px-3 py-1 rounded-full font-mono uppercase transition-all duration-200
+            ${
+              current === mode
+                ? "bg-ink text-paper"
+                : "text-ink-light hover:text-ink hover:bg-surface"
+            }`}
+          style={{ fontSize: "0.6rem", letterSpacing: "0.08em" }}
+        >
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
+}

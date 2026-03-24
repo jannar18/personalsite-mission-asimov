@@ -1,0 +1,44 @@
+{
+  "assigned_to": "agent:claude-opus-4-canvas",
+  "branch_links": [
+    {
+      "branch": "feature/asmv-60-infinite-canvas-prototype",
+      "linked_at": "2026-03-07T23:15:06Z",
+      "linked_by": "agent:claude-opus-4",
+      "repo": null
+    }
+  ],
+  "comment_count": 4,
+  "complexity": null,
+  "created_at": "2026-03-07T23:05:49Z",
+  "created_by": "agent:claude-opus-4",
+  "custom_fields": {},
+  "description": null,
+  "done_at": "2026-03-07T23:36:47Z",
+  "evidence_refs": [
+    {
+      "id": "ev_01KK5AJ21QP80SY2S1Q6EEP0WY",
+      "role": "review",
+      "source_type": "comment"
+    },
+    {
+      "id": "ev_01KK5B5CHY2HYRJPVMDES1QKWW",
+      "role": "review",
+      "source_type": "comment"
+    }
+  ],
+  "id": "task_01KK58SHWPTYGB1981DMKEKMMA",
+  "last_event_id": "ev_01KK5B5CHY2HYRJPVMDES1QKWW",
+  "last_status_changed_at": "2026-03-07T23:36:47Z",
+  "priority": "medium",
+  "relationships_out": [],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-60",
+  "status": "done",
+  "tags": null,
+  "title": "Research infinite canvas approaches & build prototype",
+  "type": "task",
+  "updated_at": "2026-03-07T23:47:14Z",
+  "urgency": null
+}
