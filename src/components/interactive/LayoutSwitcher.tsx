@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 
-export type LayoutMode = "scatter" | "masonry" | "columns" | "bento";
+export type LayoutMode = "scatter" | "masonry";
 
 const LAYOUTS: { mode: LayoutMode; label: string }[] = [
   { mode: "scatter", label: "Scatter" },
   { mode: "masonry", label: "Masonry" },
-  { mode: "columns", label: "Columns" },
-  { mode: "bento", label: "Bento" },
 ];
 
 interface LayoutSwitcherProps {

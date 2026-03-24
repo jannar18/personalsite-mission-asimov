@@ -4,8 +4,6 @@ import { type LayoutMode } from "./LayoutSwitcher";
 import LayoutSwitcher from "./LayoutSwitcher";
 import InfiniteCanvas from "./InfiniteCanvas";
 import MasonryLayout from "./MasonryLayout";
-import ColumnsLayout from "./ColumnsLayout";
-import BentoLayout from "./BentoLayout";
 
 export interface StudioDeskEntry {
   slug: string;
@@ -28,8 +26,6 @@ export default function StudioDesk({ entries, layout }: StudioDeskProps) {
     <>
       {layout === "scatter" && <InfiniteCanvas entries={entries} />}
       {layout === "masonry" && <MasonryLayout entries={entries} />}
-      {layout === "columns" && <ColumnsLayout entries={entries} />}
-      {layout === "bento" && <BentoLayout entries={entries} />}
       <LayoutSwitcher current={layout} />
     </>
   );

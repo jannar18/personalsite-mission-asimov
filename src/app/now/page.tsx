@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description: "What I'm working on, thinking about, and making right now.",
 };
 
-const VALID_LAYOUTS: LayoutMode[] = ["scatter", "masonry", "columns", "bento"];
+const VALID_LAYOUTS: LayoutMode[] = ["scatter", "masonry"];
 
 /**
  * Now / Studio Desk page.
  *
- * Switchable layout prototypes: ?layout=scatter|masonry|columns|bento
+ * Switchable layout prototypes: ?layout=scatter|masonry
  * Default is scatter (infinite canvas).
  */
 export default async function NowPage({
