@@ -1,0 +1,33 @@
+{
+  "assigned_to": null,
+  "branch_links": [
+    {
+      "branch": "feature/asmv-60-infinite-canvas-prototype",
+      "linked_at": "2026-03-09T14:46:40Z",
+      "linked_by": "agent:claude-opus-4",
+      "repo": null
+    }
+  ],
+  "comment_count": 1,
+  "complexity": null,
+  "created_at": "2026-03-09T14:46:12Z",
+  "created_by": "agent:claude-opus-4",
+  "custom_fields": {},
+  "description": null,
+  "done_at": null,
+  "evidence_refs": [],
+  "id": "task_01KK9H04WW8V1PGN3NR7JZA6P4",
+  "last_event_id": "ev_01KK9H10N71T42TAZ8XWZYDCDQ",
+  "last_status_changed_at": "2026-03-09T14:46:12Z",
+  "priority": "high",
+  "relationships_out": [],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-68",
+  "status": "backlog",
+  "tags": null,
+  "title": "Prototype: fix scatter layout (real image dimensions)",
+  "type": "task",
+  "updated_at": "2026-03-09T14:46:40Z",
+  "urgency": null
+}

@@ -1,0 +1,62 @@
+{
+  "assigned_to": null,
+  "branch_links": [
+    {
+      "branch": "feature/asmv-60-infinite-canvas-prototype",
+      "linked_at": "2026-03-09T14:46:42Z",
+      "linked_by": "agent:claude-opus-4",
+      "repo": null
+    }
+  ],
+  "comment_count": 1,
+  "complexity": null,
+  "created_at": "2026-03-09T14:46:13Z",
+  "created_by": "agent:claude-opus-4",
+  "custom_fields": {},
+  "description": null,
+  "done_at": null,
+  "evidence_refs": [],
+  "id": "task_01KK9H06GJWP075J5WF4J1HVB6",
+  "last_event_id": "ev_01KK9H12443YJWD42V4KBP8MHC",
+  "last_status_changed_at": "2026-03-09T14:46:13Z",
+  "priority": "high",
+  "relationships_out": [
+    {
+      "created_at": "2026-03-09T14:46:39Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK9H04WW8V1PGN3NR7JZA6P4",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-03-09T14:46:39Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK9H05A3VY4G82Z8A2Y2V6F2",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-03-09T14:46:39Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK9H05PQ0ZRK6786W427WS04",
+      "type": "depends_on"
+    },
+    {
+      "created_at": "2026-03-09T14:46:40Z",
+      "created_by": "agent:claude-opus-4",
+      "note": null,
+      "target_task_id": "task_01KK9H062CS6HXDD0YGTDCXTFD",
+      "type": "depends_on"
+    }
+  ],
+  "reopened_count": 0,
+  "schema_version": 1,
+  "short_id": "ASMV-72",
+  "status": "backlog",
+  "tags": null,
+  "title": "Studio desk layout testing & comparison",
+  "type": "task",
+  "updated_at": "2026-03-09T14:46:42Z",
+  "urgency": null
+}
