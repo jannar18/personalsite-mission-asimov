@@ -50,7 +50,7 @@ export default function HomePage() {
               className="mt-[1.5vh] font-serif font-bold italic text-ink md:whitespace-nowrap"
               style={{ fontSize: "clamp(1.35rem, 3.2vw, 3.25rem)" }}
             >
-              Software Engineering + AI Research
+              Software Development + AI Research
             </h2>
             <p
               className="mt-[2vh] max-w-text text-ink-light leading-relaxed font-sans"
