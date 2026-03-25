@@ -26,8 +26,6 @@ export default function HeroBrandVisual() {
   const [metadataLeft, setMetadataLeft] = useState("");
   const [metadataRight, setMetadataRight] = useState("");
   const [metadataBottom, setMetadataBottom] = useState<MetadataBottomItem[]>([]);
-  const [hintVisible, setHintVisible] = useState(true);
-
   // ── Image Preloading ──
   useEffect(() => {
     const imgs: HTMLImageElement[] = [];
@@ -68,53 +66,37 @@ export default function HeroBrandVisual() {
     s.wireNetwork = generateWireNetwork(s.perfTier);
   }, []);
 
-  // ── Scroll-Driven Rotation ──
-  useEffect(() => {
-    const handleScroll = () => {
-      const el = scrollRef.current;
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const scrollRange = el.clientHeight - window.innerHeight;
-      if (scrollRange <= 0) return;
-
-      const progress = Math.max(0, Math.min(1, -rect.top / scrollRange));
-
-      // Ease function for smooth fold/unfold
-      const ease = (t: number) =>
-        t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-
-      // Fold in → stay merged
-      let rotation: number;
-      if (progress <= 0.5) {
-        rotation = ease(progress / 0.5);
-      } else {
-        rotation = 1;
-      }
-
-      // Set directly — no lerp lag for scroll-driven animation
-      stateRef.current.rotation = rotation;
-      stateRef.current.targetRotation = rotation;
-
-      if (progress > 0.03) setHintVisible(false);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // ── Animation Loop ──
+  // ── Animation Loop (includes timed entrance animation) ──
   useEffect(() => {
     handleResize();
     let skipFrame = false;
 
-    const loop = () => {
+    const DELAY_MS = 5000;
+    const DURATION_MS = 7000;
+    const ease = (t: number) =>
+      t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+    let loopStart: number | null = null;
+
+    const loop = (now: number) => {
+      if (loopStart === null) loopStart = now;
+
       if (!isVisibleRef.current) {
         rafRef.current = requestAnimationFrame(loop);
         return;
       }
 
       const s = stateRef.current;
+
+      // Entrance animation: wait, then fold over duration
+      const elapsed = now - loopStart;
+      if (elapsed >= DELAY_MS && s.rotation < 1) {
+        const animElapsed = elapsed - DELAY_MS;
+        const progress = Math.min(1, animElapsed / DURATION_MS);
+        const rotation = ease(progress);
+        s.rotation = rotation;
+        s.targetRotation = rotation;
+      }
 
       // Throttle to ~30fps on mobile: skip every other frame
       if (s.perfTier === "low") {
@@ -130,7 +112,6 @@ export default function HeroBrandVisual() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      // Scale context for DPR — drawing code uses CSS pixel coordinates
       const dpr = s.dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -192,10 +173,10 @@ export default function HeroBrandVisual() {
   }, []);
 
   return (
-    <div ref={scrollRef} className="relative" style={{ height: "150vh" }}>
+    <div ref={scrollRef} className="relative">
       <section
         ref={stickyRef}
-        className="sticky top-0 h-screen overflow-hidden"
+        className="h-screen overflow-hidden"
       >
         {/* Canvas layer */}
         <canvas
@@ -239,21 +220,6 @@ export default function HeroBrandVisual() {
           >
             {metadataRight}
           </div>
-
-          {/* Hint text */}
-          {hintVisible && (
-            <div
-              className="absolute bottom-12 left-1/2 -translate-x-1/2 font-mono uppercase animate-breathe"
-              style={{
-                fontSize: "8.25px",
-                fontWeight: 300,
-                letterSpacing: "3px",
-                color: "rgba(var(--color-ink-rgb),0.13)",
-              }}
-            >
-              scroll to merge worlds
-            </div>
-          )}
 
           {/* Bottom metadata bar */}
           <div
