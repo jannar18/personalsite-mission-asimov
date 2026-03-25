@@ -78,6 +78,23 @@ const config: Config = {
         content: "72rem",
         text: "40rem",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "#471f20",
+            "--tw-prose-headings": "#471f20",
+            "--tw-prose-links": "#f65058",
+            "--tw-prose-bold": "#471f20",
+            "--tw-prose-quotes": "#6d4344",
+            "--tw-prose-quote-borders": "#e8e5d8",
+            "--tw-prose-code": "#471f20",
+            "--tw-prose-hr": "#e8e5d8",
+            "--tw-prose-bullets": "#946768",
+            "--tw-prose-counters": "#946768",
+            maxWidth: "none",
+          },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
