@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllWritingPosts, getWritingPost } from "@/lib/content";
+import { formatDate } from "@/lib/format";
 
 /**
  * Writing detail page — renders a single essay/post from MDX.
@@ -37,17 +39,40 @@ export default async function WritingDetailPage({
   return (
     <div className="mx-auto max-w-content px-5">
       <article className="py-24">
-        <header className="mb-16">
-          <h1 className="text-4xl font-light text-ink md:text-5xl">
+        {/* Back link */}
+        <Link
+          href="/writing"
+          className="inline-flex items-center gap-1.5 font-mono text-xs text-ink-lighter uppercase tracking-wider transition-colors hover:text-scarlet"
+        >
+          &larr; Writing
+        </Link>
+
+        <header className="mt-8 mb-16">
+          <p className="font-mono text-xs text-ink-lighter uppercase tracking-wider">
+            {formatDate(post.date)}
+          </p>
+          <h1 className="mt-3 text-4xl font-light text-ink md:text-5xl">
             {post.title}
           </h1>
           {post.description && (
-            <p className="mt-4 max-w-text text-lg text-ink-light">
+            <p className="mt-4 max-w-text text-lg text-ink-light leading-relaxed">
               {post.description}
             </p>
           )}
-          <p className="mt-4 text-sm text-ink-lighter">{post.date}</p>
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-4 flex gap-3">
+              {post.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono text-xs text-ink-lighter uppercase tracking-wider"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
+
         <div className="prose max-w-text">
           <MDXRemote source={post.content} />
         </div>
