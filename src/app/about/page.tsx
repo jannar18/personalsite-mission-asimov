@@ -79,7 +79,7 @@ export default function AboutPage() {
             role="Gallery Educator + Greeter"
             organization="Wrightwood 659"
             dates="Apr 2024 — Jul 2024"
-            description="Engaged & educated visitors on architecture & artworks, developed research & &ldquo;educator talk&rdquo; on artist"
+            description={'Engaged & educated visitors on architecture & artworks, developed research & \u201Ceducator talk\u201D on artist'}
           />
           <ExperienceEntry
             role="Gallery Service Assistant"
@@ -233,8 +233,9 @@ function ExperienceEntry({
         <p
           className="mt-3 font-sans text-ink-light leading-normal"
           style={{ fontSize: "clamp(0.8125rem, 1vw, 0.9375rem)" }}
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
+        >
+          {description}
+        </p>
       ) : bullets ? (
         <ul className="mt-3 space-y-1.5">
           {bullets.map((bullet, i) => (
