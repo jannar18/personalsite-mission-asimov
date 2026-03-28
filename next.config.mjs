@@ -4,6 +4,13 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  outputFileTracingExcludes: {
+    "*": [
+      "./public/images/**",
+      "./public/videos/**",
+      "./public/textures/**",
+    ],
+  },
   async redirects() {
     return [
       {
