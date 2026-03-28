@@ -64,10 +64,7 @@ export default function AboutPage() {
             role="Software Developer"
             organization="Fractal Tech NYC"
             dates="Feb 2026 — present"
-            bullets={[
-              "Built and shipped 6+ full-stack apps, software tools, and AI research projects with 451+ commits and 168+ PRs",
-              "Designed and built multiplayer games, MCP servers, dungeon crawlers, and AI-powered tools using React, Next.js, TypeScript, Python, WebSockets, and Three.js — with a focus on Claude Code research and harnessing AI as a development partner",
-            ]}
+            description="Built and shipped 6+ full-stack apps, software tools, and AI research projects with 451+ commits and 168+ PRs — designed and built multiplayer games, MCP servers, dungeon crawlers, and AI-powered tools using React, Next.js, TypeScript, Python, WebSockets, and Three.js, with a focus on Claude Code research and harnessing AI as a development partner"
           />
           <ExperienceEntry
             role="Architectural Intern"
@@ -157,7 +154,7 @@ export default function AboutPage() {
             >
               Awards & Honors
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-0.5">
               <RecognitionItem label="Dwight T. Black Memorial Scholarship Nomination" year="2024" />
               <RecognitionItem label="U.S. Solar Decathlon Finalist" year="2024" />
               <RecognitionItem label="Anderson Presidential Scholarship" year="2022 — present" />
@@ -174,7 +171,7 @@ export default function AboutPage() {
             >
               Organizations & Leadership
             </h3>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-4 space-y-0.5">
               <RecognitionItem label="Camras Scholars Mentor" year="2020 — 2025" />
               <RecognitionItem label="IIT Art x Architecture (AIAS) Director" year="2021 — 2024" />
               <RecognitionItem label="Kappa Phi Delta — Assistant Secretary" year="2022 — 2024" />
@@ -206,26 +203,28 @@ function ExperienceEntry({
 }) {
   return (
     <div>
-      <h3
-        className="flex flex-wrap items-baseline gap-x-2"
-        style={{ fontSize: "clamp(1.125rem, 1.5vw, 1.25rem)" }}
-      >
-        <span className="font-serif font-bold italic text-ink">{role}</span>
-        <span className="font-sans text-ink-lighter" style={{ fontSize: "0.85em" }}>|</span>
+      <p className="flex flex-wrap items-baseline gap-x-2">
+        <span
+          className="font-serif font-bold italic text-ink"
+          style={{ fontSize: "clamp(1.125rem, 1.5vw, 1.25rem)" }}
+        >
+          {role}
+        </span>
+        <span className="text-ink-lighter" style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}>|</span>
         <span
           className="font-sans text-ink-light"
           style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}
         >
           {organization}
         </span>
-        <span className="font-sans text-ink-lighter" style={{ fontSize: "0.85em" }}>|</span>
+        <span className="text-ink-lighter" style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}>|</span>
         <span
           className="font-mono uppercase tracking-wider text-ink-lighter"
           style={{ fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)" }}
         >
           {dates}
         </span>
-      </h3>
+      </p>
       {description ? (
         <p
           className="mt-3 font-sans text-ink-light leading-normal"
@@ -263,19 +262,21 @@ function EducationEntry({
 }) {
   return (
     <div>
-      <h3
-        className="font-serif font-bold italic text-ink"
-        style={{ fontSize: "clamp(1.125rem, 1.5vw, 1.25rem)" }}
-      >
-        {institution}
-      </h3>
-      <p className="mt-1 flex flex-wrap items-baseline gap-x-3">
+      <p className="flex flex-wrap items-baseline gap-x-2">
+        <span
+          className="font-serif font-bold italic text-ink"
+          style={{ fontSize: "clamp(1.125rem, 1.5vw, 1.25rem)" }}
+        >
+          {institution}
+        </span>
+        <span className="text-ink-lighter" style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}>|</span>
         <span
           className="font-sans text-ink-light"
           style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}
         >
           {degree}
         </span>
+        <span className="text-ink-lighter" style={{ fontSize: "clamp(0.875rem, 1.1vw, 1rem)" }}>|</span>
         <span
           className="font-mono uppercase tracking-wider text-ink-lighter"
           style={{ fontSize: "clamp(0.65rem, 0.8vw, 0.75rem)" }}

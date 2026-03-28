@@ -192,6 +192,11 @@
     font-size: 11pt !important;
   }
 
+  /* Recognition sub-labels are h3 but styled as small mono labels — keep them small in print */
+  h3.font-mono {
+    font-size: 8pt !important;
+  }
+
   a {
     color: black !important;
     text-decoration: none !important;

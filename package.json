@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-pdf/renderer": "^4.3.2",
     "gray-matter": "^4.0.3",
     "next": "^15.3.3",
     "next-mdx-remote": "^6.0.0",
