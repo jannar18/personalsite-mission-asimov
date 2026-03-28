@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { type LayoutMode } from "./LayoutSwitcher";
 import LayoutSwitcher from "./LayoutSwitcher";
@@ -24,6 +25,14 @@ interface StudioDeskProps {
 }
 
 export default function StudioDesk({ entries }: StudioDeskProps) {
+  return (
+    <Suspense>
+      <StudioDeskInner entries={entries} />
+    </Suspense>
+  );
+}
+
+function StudioDeskInner({ entries }: StudioDeskProps) {
   const searchParams = useSearchParams();
   const layoutParam = searchParams.get("layout") ?? "scatter";
   const layout: LayoutMode = VALID_LAYOUTS.includes(layoutParam as LayoutMode)
