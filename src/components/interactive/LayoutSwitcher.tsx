@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 export type LayoutMode = "scatter" | "masonry";
 
 const LAYOUTS: { mode: LayoutMode; label: string }[] = [
@@ -11,9 +9,10 @@ const LAYOUTS: { mode: LayoutMode; label: string }[] = [
 
 interface LayoutSwitcherProps {
   current: LayoutMode;
+  onChange: (mode: LayoutMode) => void;
 }
 
-export default function LayoutSwitcher({ current }: LayoutSwitcherProps) {
+export default function LayoutSwitcher({ current, onChange }: LayoutSwitcherProps) {
   return (
     <nav
       className="fixed left-5 z-30 flex items-center gap-0"
@@ -29,9 +28,9 @@ export default function LayoutSwitcher({ current }: LayoutSwitcherProps) {
               /
             </span>
           )}
-          <Link
-            href={mode === "scatter" ? "/archive" : `/archive?layout=${mode}`}
-            className={`font-mono uppercase transition-colors duration-200
+          <button
+            onClick={() => onChange(mode)}
+            className={`font-mono uppercase transition-colors duration-200 bg-transparent border-0 cursor-pointer p-0
               ${
                 current === mode
                   ? "text-ink-lighter/40"
@@ -40,7 +39,7 @@ export default function LayoutSwitcher({ current }: LayoutSwitcherProps) {
             style={{ fontSize: "0.5rem", letterSpacing: "0.08em" }}
           >
             {label}
-          </Link>
+          </button>
         </span>
       ))}
     </nav>

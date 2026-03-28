@@ -1,7 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { type LayoutMode } from "./LayoutSwitcher";
 import LayoutSwitcher from "./LayoutSwitcher";
 import InfiniteCanvas from "./InfiniteCanvas";
@@ -18,26 +17,13 @@ export interface StudioDeskEntry {
   description?: string;
 }
 
-const VALID_LAYOUTS: LayoutMode[] = ["scatter", "masonry"];
-
 interface StudioDeskProps {
   entries: StudioDeskEntry[];
 }
 
 export default function StudioDesk({ entries }: StudioDeskProps) {
-  return (
-    <Suspense>
-      <StudioDeskInner entries={entries} />
-    </Suspense>
-  );
-}
+  const [layout, setLayout] = useState<LayoutMode>("scatter");
 
-function StudioDeskInner({ entries }: StudioDeskProps) {
-  const searchParams = useSearchParams();
-  const layoutParam = searchParams.get("layout") ?? "scatter";
-  const layout: LayoutMode = VALID_LAYOUTS.includes(layoutParam as LayoutMode)
-    ? (layoutParam as LayoutMode)
-    : "scatter";
   return (
     <>
       {/* Subtle page subtitle -- fixed top-center, restrained */}
@@ -52,7 +38,7 @@ function StudioDeskInner({ entries }: StudioDeskProps) {
 
       {layout === "scatter" && <InfiniteCanvas entries={entries} />}
       {layout === "masonry" && <MasonryLayout entries={entries} />}
-      <LayoutSwitcher current={layout} />
+      <LayoutSwitcher current={layout} onChange={setLayout} />
     </>
   );
 }
