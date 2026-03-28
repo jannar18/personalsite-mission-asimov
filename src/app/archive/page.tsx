@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   description: "A living archive of what I'm working on, thinking about, and making.",
 };
 
+// Force static generation — all data is read at build time, no runtime fs access needed.
+// This avoids creating a serverless function that would bundle public/ assets.
+export const dynamic = "force-static";
+
 /**
  * Archive / Studio Desk page.
  *
